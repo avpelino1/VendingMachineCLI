@@ -2,6 +2,7 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 import com.techelevator.view.Menu;
@@ -12,9 +13,10 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
 
-	private static final String[] PURCHASE_MENU = { "Feed Money", "Select Product", "Back" };
-	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "Back" };
+	private static final String[] PURCHASE_MENU = { "Feed Money", "Select Product", "Finish Transaction", "Back" };
+	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "$10 Bill", "Back" };
 
+	private BigDecimal currentMoneyProvided;
 	private Menu menu;
 
 	public VendingMachineCLI(Menu menu) {
@@ -84,7 +86,16 @@ public class VendingMachineCLI {
 		String feedOptions = "";
 		while (!feedOptions.equals("Back")) {
 			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
+			if (feedOptions.equals("1")) {
+			
+				BigDecimal addOne = new BigDecimal(1.00);
+				currentMoneyProvided = currentMoneyProvided.add(addOne);
+			}
+			System.out.println("Current money provided: " + currentMoneyProvided);
+			
+			
 		}
+		
 	}
 
 	public static void main(String[] args) {
