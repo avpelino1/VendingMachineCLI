@@ -17,7 +17,6 @@ public class VendingMachineCLI extends Connector {
 	private static final String[] PURCHASE_MENU = { "Feed Money", "Select Product", "Finish Transaction", "Back" };
 	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "$10 Bill", "Back" };
 
-	private BigDecimal currentMoneyProvided;
 	private Menu menu;
 
 	public VendingMachineCLI(Menu menu) {
@@ -46,35 +45,6 @@ public class VendingMachineCLI extends Connector {
 	private void exit() {
 		System.exit(0);
 	}
-	
-//	private void listItems() {
-//		File inputFile = new File("vendingmachine.csv");
-//
-//		try (Scanner inputScanner = new Scanner(inputFile)) {
-//
-//			while (inputScanner.hasNextLine()) {
-//				String food = inputScanner.nextLine();
-//				String[] foodSplit = food.split("|");
-//
-//				if (foodSplit[0].equals("A")) {
-//					int endIndex = food.length() - 10;
-//					String item = food.substring(3, endIndex);
-//					System.out.println(item);
-//				} else if (foodSplit[0].equals("B") || foodSplit[0].equals("C")) {
-//					int endIndex = food.length() - 11;
-//					String item = food.substring(3, endIndex);
-//					System.out.println(item);
-//				} else if (foodSplit[0].equals("D")) {
-//					int endIndex = food.length() - 9;
-//					String item = food.substring(3, endIndex);
-//					System.out.println(item);
-//				}
-//			}
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 
 	private void processPurchaseMenuOptions() {
 		String purchaseMenuOption = "";
@@ -94,12 +64,15 @@ public class VendingMachineCLI extends Connector {
 		while (!feedOptions.equals("Back")) {
 			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
 			if (feedOptions.equals("1")) {
-				BigDecimal addOne = new BigDecimal(1.00);
-				currentMoneyProvided = currentMoneyProvided.add(addOne);
+				MoneyHandler.moneyInput(1.00);
+			} else if (feedOptions.equals("2")) {
+				MoneyHandler.moneyInput(2.00);
+			} else if (feedOptions.equals("3")) {
+				MoneyHandler.moneyInput(5.00);
+			} else if (feedOptions.equals("4")) {
+				MoneyHandler.moneyInput(10.00);
 			}
-			System.out.println("Current money provided: " + currentMoneyProvided);
-			
-			
+			System.out.println("Current money provided: " + MoneyHandler.getCurrentBalance());
 		}
 		
 	}
