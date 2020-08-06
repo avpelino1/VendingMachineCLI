@@ -12,7 +12,8 @@ public class VendingMachineCLI extends Connector {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT };
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE,
+			MAIN_MENU_OPTION_EXIT };
 
 	private static final String[] PURCHASE_MENU = { "Feed Money", "Select Product", "Finish Transaction", "Back" };
 	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "$10 Bill", "Back" };
@@ -55,7 +56,12 @@ public class VendingMachineCLI extends Connector {
 			if (purchaseMenuOption.equals("Feed Money")) {
 				processMoneyFeed();
 			}
-
+			if (purchaseMenuOption.equals("Select Product")) {
+				Items.listItems();
+			}
+			System.out.println("Please enter a code of the item you want to purchase: ");
+			Scanner codeOfItem = new Scanner(System.in);
+			String itemCode = codeOfItem.nextLine();
 		}
 	}
 
@@ -74,7 +80,7 @@ public class VendingMachineCLI extends Connector {
 			}
 			System.out.println("Current money provided: " + MoneyHandler.getCurrentBalance());
 		}
-		
+
 	}
 
 	public static void main(String[] args) {

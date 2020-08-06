@@ -49,22 +49,11 @@ public class Items extends Connector {
 
 				while (inputScanner.hasNextLine()) {
 					String food = inputScanner.nextLine();
-					String[] foodSplit = food.split("|");
-
-					if (foodSplit[0].equals("A")) {
-						int endIndex = food.length() - 10;
-						String item = food.substring(3, endIndex);
-						System.out.println(item);
-					} else if (foodSplit[0].equals("B") || foodSplit[0].equals("C")) {
-						int endIndex = food.length() - 11;
-						String item = food.substring(3, endIndex);
-						System.out.println(item);
-					} else if (foodSplit[0].equals("D")) {
-						int endIndex = food.length() - 9;
-						String item = food.substring(3, endIndex);
-						System.out.println(item);
-					}
+				System.out.println(food);
 				}
+				
+				
+				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
