@@ -62,6 +62,8 @@ public class VendingMachineCLI extends Connector {
 			System.out.println("Please enter a code of the item you want to purchase: ");
 			Scanner codeOfItem = new Scanner(System.in);
 			String itemCode = codeOfItem.nextLine();
+			String nameAndPrice = Items.getItem(itemCode);
+			System.out.println("You have chosen to purchase" + nameAndPrice);
 		}
 	}
 

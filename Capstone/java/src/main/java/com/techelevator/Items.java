@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Items extends Connector {
-Map<String, String> itemChoice = new HashMap<String, String>() ; {
+static Map<String, String> itemChoice = new HashMap<String, String>() ; {
 
 	itemChoice.put("A1", "Potato Crisps");
 	itemChoice.put("A2", "Stackers");
@@ -25,10 +25,10 @@ Map<String, String> itemChoice = new HashMap<String, String>() ; {
 	itemChoice.put("D1", "U-Chews");
 	itemChoice.put("D2", "Little League Chew");
 	itemChoice.put("D3", "Chiclets");
-	itemChoice.put("D4", "Trimplemint");
+	itemChoice.put("D4", "Triplemint");
 }
 
-Map<String, Double> itemPrice = new HashMap<String, Double>() ; {
+static Map<String, Double> itemPrice = new HashMap<String, Double>() ; {
 
 	itemPrice.put("A1", 3.05);
 	itemPrice.put("A2", 1.45);
@@ -52,9 +52,16 @@ Map<String, Double> itemPrice = new HashMap<String, Double>() ; {
 	private BigDecimal priceOfItem;
 	private int stockRemaining = 5;
 
+	
+	public static String getItem(String itemCode) {
+		String nameOfItem = itemChoice.get(itemCode);
+		Double priceOfItem = itemPrice.get(itemCode);
+		String nameAndPrice = nameOfItem + " for $" + priceOfItem;
+		return nameAndPrice;
+	}
+	
 	public String getCodeOfItem() {
 		return codeOfItem;
-
 	}
 
 	public void setCodeOfItem(String codeOfItem) {
