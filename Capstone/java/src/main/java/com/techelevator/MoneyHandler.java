@@ -3,13 +3,17 @@ package com.techelevator;
 import java.math.BigDecimal;
 
 public class MoneyHandler {
-	private BigDecimal currentBalance;
+	private double currentBalance;
 
-	public BigDecimal getCurrentBalance() {
+	public double getCurrentBalance() {
 		return currentBalance;
 	}
 
-	public void setCurrentBalance(BigDecimal currentBalance) {
+	public void setCurrentBalance(double currentBalance) {
 		this.currentBalance = currentBalance;
 	}
+	
+	
+	
+	
 }

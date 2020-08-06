@@ -6,41 +6,39 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Items extends Connector {
-	
+
 	private String codeOfItem;
 	private BigDecimal priceOfItem;
-	private int stockRemaining;
+	private int stockRemaining = 5;
 
 	public String getCodeOfItem() {
 		return codeOfItem;
-		
-	}
 
+	}
 
 	public void setCodeOfItem(String codeOfItem) {
 		this.codeOfItem = codeOfItem;
 	}
 
-
 	public BigDecimal getPriceOfItem() {
 		return priceOfItem;
 	}
-
 
 	public void setPriceOfItem(BigDecimal priceOfItem) {
 		this.priceOfItem = priceOfItem;
 	}
 
-
 	public int getStockRemaining() {
+
+		if (stockRemaining < 1) {
+			System.out.println("SOLD OUT");
+		}
 		return stockRemaining;
 	}
-
 
 	public void setStockRemaining(int stockRemaining) {
 		this.stockRemaining = stockRemaining;
 	}
-
 
 	public static void listItems() {
 

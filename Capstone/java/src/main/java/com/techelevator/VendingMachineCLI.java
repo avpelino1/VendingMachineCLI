@@ -94,7 +94,6 @@ public class VendingMachineCLI extends Connector {
 		while (!feedOptions.equals("Back")) {
 			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
 			if (feedOptions.equals("1")) {
-			
 				BigDecimal addOne = new BigDecimal(1.00);
 				currentMoneyProvided = currentMoneyProvided.add(addOne);
 			}
