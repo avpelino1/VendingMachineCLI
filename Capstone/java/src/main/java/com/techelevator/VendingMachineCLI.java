@@ -7,11 +7,12 @@ import java.util.Scanner;
 
 import com.techelevator.view.Menu;
 
-public class VendingMachineCLI {
+public class VendingMachineCLI extends Connector {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
+	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT };
 
 	private static final String[] PURCHASE_MENU = { "Feed Money", "Select Product", "Finish Transaction", "Back" };
 	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "$10 Bill", "Back" };
@@ -30,44 +31,50 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
-				listItems();
+				Items.listItems();
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 
 				processPurchaseMenuOptions();
 
+			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
+				exit();
 			}
 		}
 	}
 
-	private void listItems() {
-		File inputFile = new File("vendingmachine.csv");
-
-		try (Scanner inputScanner = new Scanner(inputFile)) {
-
-			while (inputScanner.hasNextLine()) {
-				String food = inputScanner.nextLine();
-				String[] foodSplit = food.split("|");
-
-				if (foodSplit[0].equals("A")) {
-					int endIndex = food.length() - 10;
-					String item = food.substring(3, endIndex);
-					System.out.println(item);
-				} else if (foodSplit[0].equals("B") || foodSplit[0].equals("C")) {
-					int endIndex = food.length() - 11;
-					String item = food.substring(3, endIndex);
-					System.out.println(item);
-				} else if (foodSplit[0].equals("D")) {
-					int endIndex = food.length() - 9;
-					String item = food.substring(3, endIndex);
-					System.out.println(item);
-				}
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private void exit() {
+		System.exit(0);
 	}
+	
+//	private void listItems() {
+//		File inputFile = new File("vendingmachine.csv");
+//
+//		try (Scanner inputScanner = new Scanner(inputFile)) {
+//
+//			while (inputScanner.hasNextLine()) {
+//				String food = inputScanner.nextLine();
+//				String[] foodSplit = food.split("|");
+//
+//				if (foodSplit[0].equals("A")) {
+//					int endIndex = food.length() - 10;
+//					String item = food.substring(3, endIndex);
+//					System.out.println(item);
+//				} else if (foodSplit[0].equals("B") || foodSplit[0].equals("C")) {
+//					int endIndex = food.length() - 11;
+//					String item = food.substring(3, endIndex);
+//					System.out.println(item);
+//				} else if (foodSplit[0].equals("D")) {
+//					int endIndex = food.length() - 9;
+//					String item = food.substring(3, endIndex);
+//					System.out.println(item);
+//				}
+//			}
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	private void processPurchaseMenuOptions() {
 		String purchaseMenuOption = "";

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class Items {
+public class Items extends Connector {
 	
 	private String codeOfItem;
 	private BigDecimal priceOfItem;
@@ -42,7 +42,7 @@ public class Items {
 	}
 
 
-	public void listItems() {
+	public static void listItems() {
 
 		File inputFile = new File("vendingmachine.csv");
 		{
@@ -71,10 +71,6 @@ public class Items {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			
-			
-			
 		}
 	}
 }
