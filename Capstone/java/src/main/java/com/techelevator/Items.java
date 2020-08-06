@@ -28,6 +28,26 @@ Map<String, String> itemChoice = new HashMap<String, String>() ; {
 	itemChoice.put("D4", "Trimplemint");
 }
 
+Map<String, Double> itemPrice = new HashMap<String, Double>() ; {
+
+	itemPrice.put("A1", 3.05);
+	itemPrice.put("A2", 1.45);
+	itemPrice.put("A3", 2.75);
+	itemPrice.put("A4", 3.65);
+	itemPrice.put("B1", 1.80);
+	itemPrice.put("B2", 1.50);
+	itemPrice.put("B3", 1.50);
+	itemPrice.put("B4", 1.75);
+	itemPrice.put("C1", 1.25);
+	itemPrice.put("C2", 1.50);
+	itemPrice.put("C3", 1.50);
+	itemPrice.put("C4", 1.50);
+	itemPrice.put("D1", 0.85);
+	itemPrice.put("D2", 0.95);
+	itemPrice.put("D3", 0.75);
+	itemPrice.put("D4", 0.75);
+}
+
 	private String codeOfItem;
 	private BigDecimal priceOfItem;
 	private int stockRemaining = 5;
