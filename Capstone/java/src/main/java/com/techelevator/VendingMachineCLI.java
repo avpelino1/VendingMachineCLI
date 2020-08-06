@@ -63,13 +63,13 @@ public class VendingMachineCLI extends Connector {
 		String feedOptions = "";
 		while (!feedOptions.equals("Back")) {
 			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
-			if (feedOptions.equals("1")) {
+			if (feedOptions.equals("$1 Bill")) {
 				MoneyHandler.moneyInput(1.00);
-			} else if (feedOptions.equals("2")) {
+			} else if (feedOptions.equals("$2 Bill")) {
 				MoneyHandler.moneyInput(2.00);
-			} else if (feedOptions.equals("3")) {
+			} else if (feedOptions.equals("$5 Bill")) {
 				MoneyHandler.moneyInput(5.00);
-			} else if (feedOptions.equals("4")) {
+			} else if (feedOptions.equals("$10 Bill")) {
 				MoneyHandler.moneyInput(10.00);
 			}
 			System.out.println("Current money provided: " + MoneyHandler.getCurrentBalance());
