@@ -41,8 +41,8 @@ public class Chip extends Connector implements Items1{
 		return this.stockRemaining;
 	}
 	
-	public void setStockRemaining(int stockRemaining) {
-		this.stockRemaining = stockRemaining;
+	public void setStockRemaining() {
+		this.stockRemaining -= 1;
 	}
 	
 }

@@ -58,14 +58,24 @@ public class VendingMachineCLI extends Connector {
 				while (inputScanner.hasNextLine()) {
 					String food = inputScanner.nextLine();
 					String[] info = food.split("\\|");
-					String name = info[1];
 					String code = info[0];
+					String name = info[1];
 					String price = new String(info[2]);
 					String type = info[3];
 					if (type.equals("Chip")) {
 						Chip newChip = new Chip(name, code, price);
 						inputStr = name;
 					}
+					if (type.equals("Drink")) {
+						Drink newDrink = new Drink(name, code, price);
+					}
+					if (type.equals("Candy")) {
+						Candy newCandy = new Candy(name, code, price);
+					}
+					if (type.equals("Gum")) {
+						Gum newGum = new Gum(name, code, price);
+					}
+					
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -89,10 +99,13 @@ public class VendingMachineCLI extends Connector {
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
 				String nameAndPrice = Items.getItem(itemCode);
-				System.out.println("You have chosen to purchase" + nameAndPrice);
+				
+				System.out.println("You have chosen to purchase" + " " + nameAndPrice + "you have " + "$" + MoneyHandler.getCurrentBalance() + " remaining");
+			}
+				
 			}
 		}
-	}
+	
 
 	private void processMoneyFeed() {
 		String feedOptions = "";
