@@ -1,20 +1,19 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class Drink implements Items1 {
 	public String name;
 	public String code;
 	public String price;
 	public int stockRemaining = 5;
-	
-	public Drink(String name, String code, String price) {
-		this.name = name;
-		this.code = code;
-		this.price = price;
-	}
 
-	@Override
+	public Drink() {
+	}
+	
 	public String getNameOfItem() {
 		// TODO Auto-generated method stub
 		return this.name;

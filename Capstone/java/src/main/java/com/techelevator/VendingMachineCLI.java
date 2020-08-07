@@ -20,17 +20,19 @@ public class VendingMachineCLI extends Connector {
 	private static final String[] PURCHASE_MENU = { "Feed Money", "Select Product", "Finish Transaction", "Back" };
 	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "$10 Bill", "Back" };
 
-	public List<Items> masterList = new ArrayList<Items>();
+//	public List<Items> masterList = new ArrayList<Items>();
 	
 	public Menu menu;
 
+	Chip chip = new Chip();
+	
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 	}
 
 	public void run() {
 
-		fillList();
+//		fillList();
 
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -49,78 +51,78 @@ public class VendingMachineCLI extends Connector {
 		}
 	}
 
-	public void fillList() {
-		Chip firstChip = new Chip("","","");
-		Chip secondChip = new Chip("","","");
-		Chip thirdChip = new Chip("","","");
-		Chip fourthChip = new Chip("","","");
-		Candy firstCandy = new Candy("","","");
-		Candy secondCandy = new Candy("","","");
-		Candy thirdCandy = new Candy("","","");
-		Candy fourthCandy = new Candy("","","");
-		Drink firstDrink = new Drink("","","");
-		Drink secondDrink = new Drink("","","");
-		Drink thirdDrink = new Drink("","","");
-		Drink fourthDrink = new Drink("","","");
-		Gum firstGum = new Gum("","","");
-		Gum secondGum = new Gum("","","");
-		Gum thirdGum = new Gum("","","");
-		Gum fourthGum = new Gum("","","");
-	}
+//	public void fillList() {
+//		Chip firstChip = new Chip("","","");
+//		Chip secondChip = new Chip("","","");
+//		Chip thirdChip = new Chip("","","");
+//		Chip fourthChip = new Chip("","","");
+//		Candy firstCandy = new Candy("","","");
+//		Candy secondCandy = new Candy("","","");
+//		Candy thirdCandy = new Candy("","","");
+//		Candy fourthCandy = new Candy("","","");
+//		Drink firstDrink = new Drink("","","");
+//		Drink secondDrink = new Drink("","","");
+//		Drink thirdDrink = new Drink("","","");
+//		Drink fourthDrink = new Drink("","","");
+//		Gum firstGum = new Gum("","","");
+//		Gum secondGum = new Gum("","","");
+//		Gum thirdGum = new Gum("","","");
+//		Gum fourthGum = new Gum("","","");
+//	}
 	
 	
 	private void exit() {
 		System.exit(0);
 	}
 
-	public String inputItems() {
-		File inputFile = new File("vendingmachine.csv");
-		String inputStr = "";
-		{
-			try (Scanner inputScanner = new Scanner(inputFile)) {
-				while (inputScanner.hasNextLine()) {
-					String food = inputScanner.nextLine();
-					String[] info = food.split("\\|");
-					String code = info[0];
-					String name = info[1];
-					String price = new String(info[2]);
-					String type = info[3];
-					if (code.equals("A1")) {
-//						firstChip.realInput(name, code, price);
+//	public String inputItems() {
+//		File inputFile = new File("vendingmachine.csv");
+//		String inputStr = "";
+//		{
+//			try (Scanner inputScanner = new Scanner(inputFile)) {
+//				while (inputScanner.hasNextLine()) {
+//					String food = inputScanner.nextLine();
+//					String[] info = food.split("\\|");
+//					String code = info[0];
+//					String name = info[1];
+//					String price = new String(info[2]);
+//					String type = info[3];
+//					if (code.equals("A1")) {
+////						Chip(firstChip).realInput(name, code, price);
+////					}
+//					
+//					
+//					for (int i=0; i<masterList.size(); i++) {
+//						
 //					}
-					
-					
-					for (int i=0; i<masterList.size(); i++) {
-						
-					}
-					
-					
-					
-//					if (type.equals("Chip")) {
-//						Chip.realInput(name, code, price);
-//						Chip newChip = new Chip(name, code, price);					inputStr = name;
+//					
+//					
+//					
+////					if (type.equals("Chip")) {
+////						Chip.realInput(name, code, price);
+////						Chip newChip = new Chip(name, code, price);					inputStr = name;
+////					}
+////					if (type.equals("Drink")) {
+////						Drink newDrink = new Drink(name, code, price);
+////					}
+////					if (type.equals("Candy")) {
+////						Candy newCandy = new Candy(name, code, price);
+////					}
+////					if (type.equals("Gum")) {
+////						Gum newGum = new Gum(name, code, price);
 //					}
-//					if (type.equals("Drink")) {
-//						Drink newDrink = new Drink(name, code, price);
-//					}
-//					if (type.equals("Candy")) {
-//						Candy newCandy = new Candy(name, code, price);
-//					}
-//					if (type.equals("Gum")) {
-//						Gum newGum = new Gum(name, code, price);
-					}
-					
-				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
-		return inputStr;
-	}
+//					
+//				}
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return inputStr;
+//	}
 
 	private void processPurchaseMenuOptions() {
 		String purchaseMenuOption = "";
-
+		String theName = "";
 		while (!purchaseMenuOption.equals("Back")) {
 			purchaseMenuOption = (String) menu.getChoiceFromOptions(PURCHASE_MENU);
 
@@ -132,9 +134,8 @@ public class VendingMachineCLI extends Connector {
 				System.out.println("Please enter a code of the item you want to purchase: ");
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
-				String nameAndPrice = Items.getItem(itemCode);
-				
-				System.out.println("You have chosen to purchase" + " " + nameAndPrice + "you have " + "$" + MoneyHandler.getCurrentBalance() + " remaining");
+				chip.importChipInfo(itemCode);
+				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + ". you have " + "$" + MoneyHandler.getCurrentBalance() + " remaining");
 			}
 				
 			}

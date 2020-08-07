@@ -1,27 +1,38 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.util.Scanner;
 
-public class Chip extends Connector implements Items1{
-	
+public class Chip extends Connector implements Items1 {
+
 	public String name;
 	public String code;
 	public String price;
 	public int stockRemaining = 5;
-	
-	public Chip(String name, String code, String price) {
-		this.name = name;
-		this.code = code;
-		this.price = price;
+
+	public Chip() {
+	}
+
+	public void importChipInfo(String itemCode) {
+		File inputFile = new File("vendingmachine.csv");
+			try (Scanner inputScanner = new Scanner(inputFile)) {
+				while (inputScanner.hasNextLine()) {
+					String food = inputScanner.nextLine();
+					if (food.contains(itemCode)) {
+						String[] info = food.split("\\|");
+					this.code = info[0];
+					this.name = info[1];
+					this.price = info[2];
+					}
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
-	public void realInput(String name, String code, String price) {
-		this.name = name;
-		this.code = code;
-		this.price = price;
-	}
-	
-	@Override
 	public String getNameOfItem() {
 		// TODO Auto-generated method stub
 		return this.name;
@@ -46,7 +57,7 @@ public class Chip extends Connector implements Items1{
 		}
 		return this.stockRemaining;
 	}
-	
+
 	public void setStockRemaining() {
 		this.stockRemaining -= 1;
 	}
@@ -56,5 +67,5 @@ public class Chip extends Connector implements Items1{
 		// TODO Auto-generated method stub
 		return "Crunch Crunch, Yum";
 	}
-	
+
 }
