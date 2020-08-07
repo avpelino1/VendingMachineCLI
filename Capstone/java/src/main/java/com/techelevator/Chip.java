@@ -9,12 +9,18 @@ public class Chip extends Connector implements Items1{
 	public String price;
 	public int stockRemaining = 5;
 	
-	public Chip(String name, String code, String price2) {
+	public Chip(String name, String code, String price) {
 		this.name = name;
 		this.code = code;
-		this.price = price2;
+		this.price = price;
 	}
-
+	
+	public void realInput(String name, String code, String price) {
+		this.name = name;
+		this.code = code;
+		this.price = price;
+	}
+	
 	@Override
 	public String getNameOfItem() {
 		// TODO Auto-generated method stub
