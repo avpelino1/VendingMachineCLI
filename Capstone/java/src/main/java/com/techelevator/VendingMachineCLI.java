@@ -27,6 +27,7 @@ public class VendingMachineCLI extends Connector {
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
+	
 	}
 
 	public void run() {
@@ -69,8 +70,18 @@ public class VendingMachineCLI extends Connector {
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
 				chip.importChipInfo(itemCode);
-				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem() + ". you have " + "$"
-						+ MoneyHandler.getCurrentBalance() + " remaining");
+				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem());
+					
+				String costOfItem = chip.getPriceOfItem();
+				BigDecimal cost = new BigDecimal (costOfItem);
+				BigDecimal costNegative = new BigDecimal(-1);
+				BigDecimal costFinal = cost.multiply(costNegative);
+				MoneyHandler.moneyInput(costFinal);
+			
+				System.out.println("You have " + costFinal + " remaining");
+				
+				
+				
 			}
 
 		}

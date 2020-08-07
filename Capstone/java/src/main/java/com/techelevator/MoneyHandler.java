@@ -3,29 +3,24 @@ package com.techelevator;
 import java.math.BigDecimal;
 
 public class MoneyHandler extends Connector {
-	private static double currentBalance;
-	private static double moneyRemaining;
+	private static BigDecimal currentBalance;
 
-	
-	Chip chip = new Chip();
-	
-
-	
-	public static double getCurrentBalance() {
+	public static BigDecimal getCurrentBalance() {
 		return currentBalance;
 	}
 
-	public static void setCurrentBalance(double newCurrentBalance) {
+	public static void setCurrentBalance(BigDecimal newCurrentBalance) {
 		currentBalance = newCurrentBalance;
 	}
-	
-	public static void moneyInput(double input) {
-		currentBalance += input;
-		
-		
+
+	public static void moneyInput(BigDecimal input) {
+		currentBalance = currentBalance.add(input);
+
 	}
 
-	public static double getMoneyRemaining() {
-		return moneyRemaining;
+	public static void moneyInput(double d) {
+		BigDecimal bigDec = new BigDecimal(d);
+		currentBalance = currentBalance.add(bigDec);
+
 	}
 }
