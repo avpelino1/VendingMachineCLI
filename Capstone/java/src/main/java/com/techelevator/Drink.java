@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 public class Drink implements Items1 {
 	public String name;
 	public String code;
-	public BigDecimal price;
+	public String price;
 	public int stockRemaining = 5;
 	
-	public Drink(String name, String code, BigDecimal price) {
+	public Drink(String name, String code, String price) {
 		this.name = name;
 		this.code = code;
 		this.price = price;
@@ -27,7 +27,7 @@ public class Drink implements Items1 {
 	}
 
 	@Override
-	public BigDecimal getPriceOfItem() {
+	public String getPriceOfItem() {
 		// TODO Auto-generated method stub
 		return this.price;
 	}

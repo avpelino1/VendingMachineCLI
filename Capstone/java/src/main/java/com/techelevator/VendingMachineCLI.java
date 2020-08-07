@@ -18,13 +18,17 @@ public class VendingMachineCLI extends Connector {
 	private static final String[] PURCHASE_MENU = { "Feed Money", "Select Product", "Finish Transaction", "Back" };
 	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "$10 Bill", "Back" };
 
-	private Menu menu;
+	public Menu menu;
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 	}
 
 	public void run() {
+
+		Items.buildItemChoice();
+		Items.buildPrice();
+
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			System.out.println(choice);
@@ -46,28 +50,30 @@ public class VendingMachineCLI extends Connector {
 		System.exit(0);
 	}
 
-	public static void inputItems() {
+	public static String inputItems() {
 		File inputFile = new File("vendingmachine.csv");
+		String inputStr = "";
 		{
 			try (Scanner inputScanner = new Scanner(inputFile)) {
 				while (inputScanner.hasNextLine()) {
 					String food = inputScanner.nextLine();
-					String[] info = food.split("|");
+					String[] info = food.split("\\|");
 					String name = info[1];
 					String code = info[0];
-					BigDecimal price = new BigDecimal (info[3]);
-					String type = info[4];
+					String price = new String(info[2]);
+					String type = info[3];
 					if (type.equals("Chip")) {
 						Chip newChip = new Chip(name, code, price);
+						inputStr = name;
 					}
-					
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
+		return inputStr;
 	}
-	
+
 	private void processPurchaseMenuOptions() {
 		String purchaseMenuOption = "";
 

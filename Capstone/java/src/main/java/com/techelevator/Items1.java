@@ -6,6 +6,6 @@ public interface Items1 {
 
 	public String getNameOfItem();
 	public String getCodeOfItem();
-	public BigDecimal getPriceOfItem();
+	public String getPriceOfItem();
 	public int getStockRemaining();
 }

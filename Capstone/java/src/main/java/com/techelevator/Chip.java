@@ -6,13 +6,13 @@ public class Chip extends Connector implements Items1{
 	
 	public String name;
 	public String code;
-	public BigDecimal price;
+	public String price;
 	public int stockRemaining = 5;
 	
-	public Chip(String name, String code, BigDecimal price) {
+	public Chip(String name, String code, String price2) {
 		this.name = name;
 		this.code = code;
-		this.price = price;
+		this.price = price2;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Chip extends Connector implements Items1{
 	}
 
 	@Override
-	public BigDecimal getPriceOfItem() {
+	public String getPriceOfItem() {
 		// TODO Auto-generated method stub
 		return this.price;
 	}
