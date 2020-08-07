@@ -43,5 +43,11 @@ public class Gum implements Items1 {
 	public void setStockRemaining() {
 		this.stockRemaining -= 1;
 	}
+
+	@Override
+	public String yuum() {
+		// TODO Auto-generated method stub
+		return "Chew Chew, Yum";
+	}
 	
 }

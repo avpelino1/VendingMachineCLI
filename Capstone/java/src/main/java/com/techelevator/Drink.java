@@ -43,6 +43,12 @@ public class Drink implements Items1 {
 	public void setStockRemaining() {
 		this.stockRemaining -= 1;
 	}
+
+	@Override
+	public String yuum() {
+		// TODO Auto-generated method stub
+		return "Glug Glug, Yum";
+	}
 	
 	
 }

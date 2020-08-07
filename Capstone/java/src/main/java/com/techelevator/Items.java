@@ -57,6 +57,7 @@ public class Items extends Connector {
 		itemPrice.put("D4", 0.75);
 	}
 
+
 	public static String getItem(String itemCode) {
 		System.out.println("a");
 		String nameOfItem = itemChoice.get(itemCode);
@@ -64,6 +65,7 @@ public class Items extends Connector {
 		String nameAndPrice = nameOfItem + " for $" + priceOfItem;
 		return nameAndPrice;
 	}
+	
 
 	public String getCodeOfItem() {
 		return codeOfItem;

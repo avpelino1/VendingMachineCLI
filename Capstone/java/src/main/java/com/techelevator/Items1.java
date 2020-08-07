@@ -8,4 +8,7 @@ public interface Items1 {
 	public String getCodeOfItem();
 	public String getPriceOfItem();
 	public int getStockRemaining();
+	
+	
+	public abstract String yuum();
 }
