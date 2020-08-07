@@ -28,10 +28,9 @@ public class VendingMachineCLI extends Connector {
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			System.out.println(choice);
-
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
-				Items.listItems();
+				listItems();
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 
@@ -47,6 +46,28 @@ public class VendingMachineCLI extends Connector {
 		System.exit(0);
 	}
 
+	public static void inputItems() {
+		File inputFile = new File("vendingmachine.csv");
+		{
+			try (Scanner inputScanner = new Scanner(inputFile)) {
+				while (inputScanner.hasNextLine()) {
+					String food = inputScanner.nextLine();
+					String[] info = food.split("|");
+					String name = info[1];
+					String code = info[0];
+					BigDecimal price = new BigDecimal (info[3]);
+					String type = info[4];
+					if (type.equals("Chip")) {
+						Chip newChip = new Chip(name, code, price);
+					}
+					
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	private void processPurchaseMenuOptions() {
 		String purchaseMenuOption = "";
 
@@ -57,13 +78,13 @@ public class VendingMachineCLI extends Connector {
 				processMoneyFeed();
 			}
 			if (purchaseMenuOption.equals("Select Product")) {
-				Items.listItems();
+				listItems();
+				System.out.println("Please enter a code of the item you want to purchase: ");
+				Scanner codeOfItem = new Scanner(System.in);
+				String itemCode = codeOfItem.nextLine();
+				String nameAndPrice = Items.getItem(itemCode);
+				System.out.println("You have chosen to purchase" + nameAndPrice);
 			}
-			System.out.println("Please enter a code of the item you want to purchase: ");
-			Scanner codeOfItem = new Scanner(System.in);
-			String itemCode = codeOfItem.nextLine();
-			String nameAndPrice = Items.getItem(itemCode);
-			System.out.println("You have chosen to purchase" + nameAndPrice);
 		}
 	}
 
@@ -89,5 +110,20 @@ public class VendingMachineCLI extends Connector {
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
+		inputItems();
+	}
+
+	public static void listItems() {
+		File inputFile = new File("vendingmachine.csv");
+		{
+			try (Scanner inputScanner = new Scanner(inputFile)) {
+				while (inputScanner.hasNextLine()) {
+					String food = inputScanner.nextLine();
+					System.out.println(food);
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
