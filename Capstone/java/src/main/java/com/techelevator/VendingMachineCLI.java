@@ -23,6 +23,7 @@ public class VendingMachineCLI extends Connector {
 	public Menu menu;
 
 	Chip chip = new Chip();
+	
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
@@ -68,7 +69,7 @@ public class VendingMachineCLI extends Connector {
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
 				chip.importChipInfo(itemCode);
-				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + ". you have " + "$"
+				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem() + ". you have " + "$"
 						+ MoneyHandler.getCurrentBalance() + " remaining");
 			}
 
