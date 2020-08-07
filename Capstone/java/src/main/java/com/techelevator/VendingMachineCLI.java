@@ -21,7 +21,7 @@ public class VendingMachineCLI extends Connector {
 	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "$10 Bill", "Back" };
 
 	public List<Items> masterList = new ArrayList<Items>();
-	
+
 	public Menu menu;
 
 	public VendingMachineCLI(Menu menu) {
@@ -50,25 +50,24 @@ public class VendingMachineCLI extends Connector {
 	}
 
 	public void fillList() {
-		Chip firstChip = new Chip("","","");
-		Chip secondChip = new Chip("","","");
-		Chip thirdChip = new Chip("","","");
-		Chip fourthChip = new Chip("","","");
-		Candy firstCandy = new Candy("","","");
-		Candy secondCandy = new Candy("","","");
-		Candy thirdCandy = new Candy("","","");
-		Candy fourthCandy = new Candy("","","");
-		Drink firstDrink = new Drink("","","");
-		Drink secondDrink = new Drink("","","");
-		Drink thirdDrink = new Drink("","","");
-		Drink fourthDrink = new Drink("","","");
-		Gum firstGum = new Gum("","","");
-		Gum secondGum = new Gum("","","");
-		Gum thirdGum = new Gum("","","");
-		Gum fourthGum = new Gum("","","");
+		Chip firstChip = new Chip("", "", "");
+		Chip secondChip = new Chip("", "", "");
+		Chip thirdChip = new Chip("", "", "");
+		Chip fourthChip = new Chip("", "", "");
+		Candy firstCandy = new Candy("", "", "");
+		Candy secondCandy = new Candy("", "", "");
+		Candy thirdCandy = new Candy("", "", "");
+		Candy fourthCandy = new Candy("", "", "");
+		Drink firstDrink = new Drink("", "", "");
+		Drink secondDrink = new Drink("", "", "");
+		Drink thirdDrink = new Drink("", "", "");
+		Drink fourthDrink = new Drink("", "", "");
+		Gum firstGum = new Gum("", "", "");
+		Gum secondGum = new Gum("", "", "");
+		Gum thirdGum = new Gum("", "", "");
+		Gum fourthGum = new Gum("", "", "");
 	}
-	
-	
+
 	private void exit() {
 		System.exit(0);
 	}
@@ -96,18 +95,19 @@ public class VendingMachineCLI extends Connector {
 					
 					
 					
-//					if (type.equals("Chip")) {
-//						Chip.realInput(name, code, price);
-//						Chip newChip = new Chip(name, code, price);					inputStr = name;
-//					}
-//					if (type.equals("Drink")) {
-//						Drink newDrink = new Drink(name, code, price);
-//					}
-//					if (type.equals("Candy")) {
-//						Candy newCandy = new Candy(name, code, price);
-//					}
-//					if (type.equals("Gum")) {
-//						Gum newGum = new Gum(name, code, price);
+if (type.equals("Chip")) {
+				Chip.realInput(name, code, price);
+						Chip newChip = new Chip(name, code, price);					
+						inputStr = name;					
+						}
+			if (type.equals("Drink")) {
+				Drink newDrink = new Drink(name, code, price);
+			}
+				if (type.equals("Candy")) {
+					Candy newCandy = new Candy(name, code, price);
+				}
+				if (type.equals("Gum")) {
+					Gum newGum = new Gum(name, code, price);
 					}
 					
 				}
@@ -130,16 +130,18 @@ public class VendingMachineCLI extends Connector {
 			if (purchaseMenuOption.equals("Select Product")) {
 				listItems();
 				System.out.println("Please enter a code of the item you want to purchase: ");
+
 				Scanner codeOfItem = new Scanner(System.in);
+
 				String itemCode = codeOfItem.nextLine();
 				String nameAndPrice = Items.getItem(itemCode);
-				
-				System.out.println("You have chosen to purchase" + " " + nameAndPrice + "you have " + "$" + MoneyHandler.getCurrentBalance() + " remaining");
+
+				System.out.println("You have chosen to purchase" + " " + nameAndPrice + "you have " + "$"
+						+ MoneyHandler.getCurrentBalance() + " remaining");
 			}
-				
-			}
+
 		}
-	
+	}
 
 	private void processMoneyFeed() {
 		String feedOptions = "";
