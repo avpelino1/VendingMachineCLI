@@ -144,7 +144,9 @@ public class VendingMachineCLI extends Connector {
 				} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
-				String reportString = ">>> " + dateAndTime() + " FEED MONEY: " + chip.getNameOfItem() + " " + chip.getCodeOfItem();
+				BigDecimal one = new BigDecimal(chip.getPriceOfItem());
+				BigDecimal two = one.add(moneyHandler.getCurrentBalance());
+				String reportString = ">>> " + dateAndTime() + " " + chip.getNameOfItem() + " " + chip.getCodeOfItem() + " $" + two + " $" + moneyHandler.getCurrentBalance() ;
 				prepareReport(reportString, "Log.txt");
 			}
 

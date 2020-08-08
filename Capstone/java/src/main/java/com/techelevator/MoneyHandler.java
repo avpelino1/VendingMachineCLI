@@ -19,7 +19,11 @@ public class MoneyHandler extends Connector {
 
 	public void moneyInput(BigDecimal input) throws FileNotFoundException {
 		this.currentBalance = currentBalance.add(input);
-		String reportString = ">>> " + VendingMachineCLI.dateAndTime() + " FEED MONEY: " + input + " " + currentBalance;
+		String amount1 = input.toString();
+		double amount2 = Double.parseDouble(amount1);
+		String amount3 = currentBalance.toString();
+		double amount4 = Double.parseDouble(amount3);
+		String reportString = ">>> " + VendingMachineCLI.dateAndTime() + " FEED MONEY: $" + amount2 + " $" + amount4;
 		VendingMachineCLI.prepareReport(reportString, "Log.txt");
 	
 	}
