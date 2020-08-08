@@ -22,8 +22,9 @@ public class MoneyHandler extends Connector {
 
 	public static List<Integer> changeReturn = new ArrayList<Integer>();
 
-	public static List<Integer> changeGiven(BigDecimal moneyHandler) {
-		BigDecimal changeMoney = moneyHandler.multiply(100);
+	public static List<Integer> changeGiven( ) {
+		int changeMoney = currentBalance.intValue();
+		BigDecimal oneHundred = n
 		int quarters = 0;
 		int dimes = 0;
 		int nickels = 0;
