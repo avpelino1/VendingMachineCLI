@@ -23,6 +23,7 @@ public class VendingMachineCLI extends Connector {
 	public Menu menu;
 
 	Chip chip = new Chip();
+	private BigDecimal currentBalance = BigDecimal.valueOf(0);
 	
 
 	public VendingMachineCLI(Menu menu) {
@@ -62,7 +63,7 @@ public class VendingMachineCLI extends Connector {
 			purchaseMenuOption = (String) menu.getChoiceFromOptions(PURCHASE_MENU);
 
 			if (purchaseMenuOption.equals("Feed Money")) {
-				processMoneyFeed();
+				processMoneyFeed(MONEY_MENU);
 			}
 			if (purchaseMenuOption.equals("Select Product")) {
 				listItems();
@@ -90,23 +91,37 @@ public class VendingMachineCLI extends Connector {
 
 	}
 
-	private void processMoneyFeed() {
+public void processMoneyFeed(String[] moneyMenu) {
+		
+		BigDecimal moneyFeed1 = new BigDecimal(1);
+		BigDecimal moneyFeed2 = new BigDecimal(2);
+		BigDecimal moneyFeed3 = new BigDecimal(5);
+		BigDecimal moneyFeed4 = new BigDecimal(10);
+		
 		String feedOptions = "";
-		while (!feedOptions.equals("Back")) {
-			feedOptions = (String) menu.getChoiceFromOptions(MONEY_MENU);
+	
+			feedOptions = (String) menu.getChoiceFromOptions(moneyMenu);
+			
 			if (feedOptions.equals("$1 Bill")) {
-				MoneyHandler.moneyInput(1.00);
+				currentBalance = currentBalance.add(moneyFeed1);
+				System.out.println("You have added $1");
+				feedOptions = "1.00";
 			} else if (feedOptions.equals("$2 Bill")) {
-				MoneyHandler.moneyInput(2.00);
+				currentBalance = currentBalance.add(moneyFeed2);
+				System.out.println("You have added $2");
+				feedOptions = "2.00";
 			} else if (feedOptions.equals("$5 Bill")) {
-				MoneyHandler.moneyInput(5.00);
+				currentBalance = currentBalance.add(moneyFeed3);
+				System.out.println("You have added $5");
+				feedOptions = "5.00";
 			} else if (feedOptions.equals("$10 Bill")) {
-				MoneyHandler.moneyInput(10.00);
+				currentBalance = currentBalance.add(moneyFeed4);
+				System.out.println("You have added $10");
+				feedOptions = "10.00";
 			}
-			System.out.println("Current money provided: " + MoneyHandler.getCurrentBalance());
+			System.out.println("You have deposited: $" + currentBalance);
 		}
-
-	}
+		
 
 	public static void main(String[] args) {
 		Menu menu = new Menu(System.in, System.out);
