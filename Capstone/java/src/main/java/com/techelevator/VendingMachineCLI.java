@@ -54,7 +54,7 @@ public class VendingMachineCLI extends Connector {
 		System.exit(0);
 	}
 
-	private void processPurchaseMenuOptions() {
+	public void processPurchaseMenuOptions() {
 		String purchaseMenuOption = "";
 		String theName = "";
 		while (!purchaseMenuOption.equals("Back")) {
@@ -69,8 +69,7 @@ public class VendingMachineCLI extends Connector {
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
 				chip.importChipInfo(itemCode);
-				System.out.println(
-						"You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem());
+				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem());
 
 				String costOfItem = chip.getPriceOfItem();
 				BigDecimal cost = new BigDecimal(costOfItem);
