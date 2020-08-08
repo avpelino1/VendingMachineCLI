@@ -2,6 +2,9 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +57,7 @@ public class VendingMachineCLI extends Connector {
 
 	}
 
-	public void run() {
+	public void run() throws FileNotFoundException {
 
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -77,7 +80,7 @@ public class VendingMachineCLI extends Connector {
 		System.exit(0);
 	}
 
-	public void processPurchaseMenuOptions() {
+	public void processPurchaseMenuOptions() throws FileNotFoundException {
 		String purchaseMenuOption = "";
 		while (!purchaseMenuOption.equals("Back")) {
 			purchaseMenuOption = (String) menu.getChoiceFromOptions(PURCHASE_MENU);
@@ -139,6 +142,8 @@ public class VendingMachineCLI extends Connector {
 				} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
+				String reportString = ">>>" + "Time" + "FEED MONEY: ";
+				prepareReport(reportString, "Log.txt");
 			}
 
 		}
@@ -340,10 +345,18 @@ public class VendingMachineCLI extends Connector {
 		System.out.println("You have deposited: $" + moneyHandler.getCurrentBalance());
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Menu menu = new Menu(System.in, System.out);
+		File reportFile = new File("Log.txt");
+				reportFile.createNewFile();
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
+	}
+
+	public void prepareReport(String rep, String file) throws FileNotFoundException {
+		try (PrintWriter writer = new PrintWriter(new FileOutputStream(file, true))) {
+			writer.println(rep);
+		}
 	}
 
 	public void listItems() {

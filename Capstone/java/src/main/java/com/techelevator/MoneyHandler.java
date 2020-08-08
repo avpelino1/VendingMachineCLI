@@ -41,6 +41,7 @@ public class MoneyHandler extends Connector {
 		}
 		while (changeMoney >= 5) {
 			nickels += 1;
+			
 			changeMoney -= 5;
 		}
 
