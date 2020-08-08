@@ -220,13 +220,16 @@ public class VendingMachineCLI extends Connector {
 		cli.run();
 	}
 
-	public static void listItems() {
+	public void listItems() {
 		File inputFile = new File("vendingmachine.csv");
 		{
 			try (Scanner inputScanner = new Scanner(inputFile)) {
 				while (inputScanner.hasNextLine()) {
 					String food = inputScanner.nextLine();
-					System.out.println(food);
+					if (food.contains("A1")){
+						System.out.println(food + "|Stock: " + firstChip.getStockRemaining() + " ");
+					}
+					
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
