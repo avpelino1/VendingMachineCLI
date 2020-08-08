@@ -96,6 +96,7 @@ public class VendingMachineCLI extends Connector {
 				if (foundChip && hasStock) {
 					updateStock(itemCode);
 				} else {
+					System.out.println("This is invalid.");
 					break;
 				}
 

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import com.techelevator.view.Menu;
 
-public class Chip extends Connector implements Items1 {
+public class Chip extends Connector implements Items {
 
 	public String name;
 	public String code;

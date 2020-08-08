@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class Gum implements Items1 {
+public class Gum implements Items {
 	public String name;
 	public String code;
 	public String price;
