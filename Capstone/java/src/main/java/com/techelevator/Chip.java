@@ -32,7 +32,6 @@ public class Chip extends Connector implements Items1 {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

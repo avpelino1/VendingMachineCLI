@@ -94,6 +94,9 @@ public class VendingMachineCLI extends Connector {
 				boolean foundChip = chip.importChipInfo(itemCode);
 
 				if (foundChip) {
+					
+					
+					
 				slotNumber(itemCode);
 
 				} else {
@@ -121,8 +124,6 @@ public class VendingMachineCLI extends Connector {
 					e.printStackTrace();
 				}
 
-//				slotNumber(itemCode);
-
 				String costOfItem = chip.getPriceOfItem();
 
 				System.out.println(costOfItem);
@@ -140,7 +141,6 @@ public class VendingMachineCLI extends Connector {
 					List<Integer> changeOutput = MoneyHandler.changeGiven();
 					MoneyHandler.changeForUser(changeOutput);
 				} catch (NullPointerException e) {
-					// System.out.println("this will work eventually");
 					e.printStackTrace();
 				}
 			}
@@ -246,35 +246,50 @@ public class VendingMachineCLI extends Connector {
 					String food = inputScanner.nextLine();
 					if (food.contains("A1")) {
 						System.out.println(food + "|Stock: " + firstChip.getStockRemaining() + " ");
-					}  if (food.contains("A2")) {
+					}
+					if (food.contains("A2")) {
 						System.out.println(food + "|Stock: " + secondChip.getStockRemaining() + " ");
-					}  if (food.contains("A3")) {
+					}
+					if (food.contains("A3")) {
 						System.out.println(food + "|Stock: " + thirdChip.getStockRemaining() + " ");
-					}  if (food.contains("A4")) {
+					}
+					if (food.contains("A4")) {
 						System.out.println(food + "|Stock: " + fourthChip.getStockRemaining() + " ");
-					}  if (food.contains("B1")) {
+					}
+					if (food.contains("B1")) {
 						System.out.println(food + "|Stock: " + firstCandy.getStockRemaining() + " ");
-					}  if (food.contains("B2")) {
+					}
+					if (food.contains("B2")) {
 						System.out.println(food + "|Stock: " + secondCandy.getStockRemaining() + " ");
-					}  if (food.contains("B3")) {
+					}
+					if (food.contains("B3")) {
 						System.out.println(food + "|Stock: " + thirdCandy.getStockRemaining() + " ");
-					}  if (food.contains("B4")) {
+					}
+					if (food.contains("B4")) {
 						System.out.println(food + "|Stock: " + fourthCandy.getStockRemaining() + " ");
-					}  if (food.contains("C1")) {
+					}
+					if (food.contains("C1")) {
 						System.out.println(food + "|Stock: " + firstDrink.getStockRemaining() + " ");
-					}  if (food.contains("C2")) {
+					}
+					if (food.contains("C2")) {
 						System.out.println(food + "|Stock: " + secondDrink.getStockRemaining() + " ");
-					}  if (food.contains("C3")) {
+					}
+					if (food.contains("C3")) {
 						System.out.println(food + "|Stock: " + thirdDrink.getStockRemaining() + " ");
-					}  if (food.contains("C4")) {
+					}
+					if (food.contains("C4")) {
 						System.out.println(food + "|Stock: " + fourthDrink.getStockRemaining() + " ");
-					}  if (food.contains("D1")) {
+					}
+					if (food.contains("D1")) {
 						System.out.println(food + "|Stock: " + firstGum.getStockRemaining() + " ");
-					}  if (food.contains("D2")) {
+					}
+					if (food.contains("D2")) {
 						System.out.println(food + "|Stock: " + secondGum.getStockRemaining() + " ");
-					}  if (food.contains("D3")) {
+					}
+					if (food.contains("D3")) {
 						System.out.println(food + "|Stock: " + thirdGum.getStockRemaining() + " ");
-					}  if (food.contains("D4")) {
+					}
+					if (food.contains("D4")) {
 						System.out.println(food + "|Stock: " + fourthGum.getStockRemaining() + " ");
 					}
 				}
