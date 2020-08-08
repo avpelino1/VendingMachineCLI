@@ -93,17 +93,14 @@ public class VendingMachineCLI extends Connector {
 
 				if (itemCode.contains("A")) {
 					System.out.println(chip.yuum());
-				}
-				else if (itemCode.contains("B")) {
+				} else if (itemCode.contains("B")) {
 					System.out.println(candy.yuum());
-				}
-				else if (itemCode.contains("C")) {
+				} else if (itemCode.contains("C")) {
 					System.out.println(drink.yuum());
-					}
-				else if (itemCode.contains("D")) {
+				} else if (itemCode.contains("D")) {
 					System.out.println(gum.yuum());
 				}
-				
+
 				String costOfItem = chip.getPriceOfItem();
 				BigDecimal cost = new BigDecimal(costOfItem);
 				BigDecimal costNegative = new BigDecimal(-1);
@@ -112,6 +109,14 @@ public class VendingMachineCLI extends Connector {
 
 				System.out.println("You have " + moneyHandler.getCurrentBalance() + " remaining");
 
+			}
+			if (purchaseMenuOption.equals("Finish Transaction")) {
+				try {
+					List<Integer> changeOutput = MoneyHandler.changeGiven(moneyHandler);
+					MoneyHandler.changeForUser(changeOutput);
+				} catch (NullPointerException e) {
+					System.out.println("this will work eventually");
+				}
 			}
 
 		}

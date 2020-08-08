@@ -22,22 +22,24 @@ public class MoneyHandler extends Connector {
 
 	public static List<Integer> changeReturn = new ArrayList<Integer>();
 
-	public static List<Integer> changeGiven( ) {
-		int changeMoney = currentBalance.intValue();
-		BigDecimal oneHundred = n
+	public List<Integer> changeGiven( ) {
+		BigDecimal oneHundred = new BigDecimal(100);
+		BigDecimal test = currentBalance.multiply(oneHundred);
+		int changeMoney = test.intValue();
+
 		int quarters = 0;
 		int dimes = 0;
 		int nickels = 0;
 
-		while (changeMoney >= 25) {
+		if (changeMoney >= 25) {
 			quarters += 1;
 			changeMoney -= 25;
 		}
-		while (changeMoney >= 10) {
+		else if (changeMoney >= 10) {
 			dimes += 1;
 			changeMoney -= 10;
 		}
-		while (changeMoney >= 5) {
+		else if (changeMoney >= 5) {
 			nickels += 1;
 			changeMoney -= 5;
 		}
@@ -49,11 +51,14 @@ public class MoneyHandler extends Connector {
 		return changeReturn;
 	}
 	
-	public static void changeForUser(List<String> coins) {
+	public static void changeForUser(List<Integer> coins) {
+		int quarterReturns = coins.get(0);
+		int dimesReturns = coins.get(1);
+		int nickelReturns = coins.get(2);
 		
-		System.out.println("Your change in quarters: " + changeReturn.get(0));
-		System.out.println("Your change in dimes: " + changeReturn.get(1));
-		System.out.println("Your change in nickels: " + changeReturn.get(2));
+		System.out.println("Your change in quarters: " + quarterReturns);
+		System.out.println("Your change in dimes: " + dimesReturns);
+		System.out.println("Your change in nickels: " + nickelReturns);
 
 		
 		
