@@ -19,8 +19,8 @@ public class MoneyHandler extends Connector {
 	}
 
 	public static void moneyInput(double d) {
-		BigDecimal bigDec = new BigDecimal(d);
-		currentBalance = currentBalance.add(bigDec);
-
+//		BigDecimal bigDec = new BigDecimal(d);
+		currentBalance = BigDecimal.valueOf(d);
+		
 	}
 }
