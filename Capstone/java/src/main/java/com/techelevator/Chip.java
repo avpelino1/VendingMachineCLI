@@ -16,21 +16,17 @@ public class Chip extends Connector implements Items1 {
 
 	public Chip() {
 	}
-	
+		
 	public void importChipInfo(String itemCode) {
-		int counter = 0;
 		File inputFile = new File("vendingmachine.csv");
 		try (Scanner inputScanner = new Scanner(inputFile)) {
 			while (inputScanner.hasNextLine()) {
 				String food = inputScanner.nextLine();
-				counter += 1;
 				if (food.contains(itemCode)) {
 					String[] info = food.split("\\|");
 					this.code = info[0];
 					this.name = info[1];
 					this.price = info[2];
-				} else if (counter == 16) {
-					System.out.println("Invalid product code.");
 				}
 			}
 		} catch (FileNotFoundException e) {

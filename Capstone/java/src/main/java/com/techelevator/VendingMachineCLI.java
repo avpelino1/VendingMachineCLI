@@ -69,7 +69,24 @@ public class VendingMachineCLI extends Connector {
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
 				chip.importChipInfo(itemCode);
-				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem());
+				File inputFile = new File("vendingmachine.csv");
+				int counter = 0;
+				try (Scanner inputScanner = new Scanner(inputFile)) {
+					while (inputScanner.hasNextLine()) {
+						String food = inputScanner.nextLine();
+						if (!food.contains(itemCode)) {
+							counter += 1;
+						} else if (counter == 16) {
+							System.out.println("Invalid product code.");
+//							menu.displayMenuOptions(PURCHASE_MENU);
+						} else {
+							System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for "
+									+ chip.getPriceOfItem());
+						}
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
 				String costOfItem = chip.getPriceOfItem();
 				BigDecimal cost = new BigDecimal(costOfItem);
@@ -120,7 +137,6 @@ public class VendingMachineCLI extends Connector {
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
-//		inputItems();
 	}
 
 	public static void listItems() {
