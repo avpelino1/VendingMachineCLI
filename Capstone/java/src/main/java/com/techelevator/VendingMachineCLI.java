@@ -24,16 +24,14 @@ public class VendingMachineCLI extends Connector {
 
 	Chip chip = new Chip();
 	private BigDecimal currentBalance = BigDecimal.valueOf(0);
-	
+	MoneyHandler moneyHandler = new MoneyHandler(currentBalance);
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
-	
+
 	}
 
 	public void run() {
-
-//		fillList();
 
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
@@ -71,57 +69,53 @@ public class VendingMachineCLI extends Connector {
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
 				chip.importChipInfo(itemCode);
-				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem());
-//	=================================================================
-//          THIS IS CAUSING US ERRORS CURRENTLY, I fixed the nullPointException this caused in MoneyHandler
-// =================================================================				
-//				String costOfItem = chip.getPriceOfItem();
-//				BigDecimal cost = new BigDecimal (costOfItem);
-//				BigDecimal costNegative = new BigDecimal(-1);
-//				BigDecimal costFinal = cost.multiply(costNegative);
-//				MoneyHandler.moneyInput(costFinal);
-//			
-//				System.out.println("You have " + costFinal + " remaining");
-				
-				
-				
+				System.out.println(
+						"You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem());
+
+				String costOfItem = chip.getPriceOfItem();
+				BigDecimal cost = new BigDecimal(costOfItem);
+				BigDecimal costNegative = new BigDecimal(-1);
+				BigDecimal costFinal = cost.multiply(costNegative);
+				moneyHandler.moneyInput(costFinal);
+
+				System.out.println("You have " + moneyHandler.getCurrentBalance() + " remaining");
+
 			}
 
 		}
 
 	}
 
-public void processMoneyFeed(String[] moneyMenu) {
-		
+	public void processMoneyFeed(String[] moneyMenu) {
+
 		BigDecimal moneyFeed1 = new BigDecimal(1);
 		BigDecimal moneyFeed2 = new BigDecimal(2);
 		BigDecimal moneyFeed3 = new BigDecimal(5);
 		BigDecimal moneyFeed4 = new BigDecimal(10);
-		
+
 		String feedOptions = "";
-	
-			feedOptions = (String) menu.getChoiceFromOptions(moneyMenu);
-			
-			if (feedOptions.equals("$1 Bill")) {
-				currentBalance = currentBalance.add(moneyFeed1);
-				System.out.println("You have added $1");
-				feedOptions = "1.00";
-			} else if (feedOptions.equals("$2 Bill")) {
-				currentBalance = currentBalance.add(moneyFeed2);
-				System.out.println("You have added $2");
-				feedOptions = "2.00";
-			} else if (feedOptions.equals("$5 Bill")) {
-				currentBalance = currentBalance.add(moneyFeed3);
-				System.out.println("You have added $5");
-				feedOptions = "5.00";
-			} else if (feedOptions.equals("$10 Bill")) {
-				currentBalance = currentBalance.add(moneyFeed4);
-				System.out.println("You have added $10");
-				feedOptions = "10.00";
-			}
-			System.out.println("You have deposited: $" + currentBalance);
+
+		feedOptions = (String) menu.getChoiceFromOptions(moneyMenu);
+
+		if (feedOptions.equals("$1 Bill")) {
+			moneyHandler.moneyInput(moneyFeed1);
+			System.out.println("You have added $1");
+			feedOptions = "1.00";
+		} else if (feedOptions.equals("$2 Bill")) {
+			moneyHandler.moneyInput(moneyFeed2);
+			System.out.println("You have added $2");
+			feedOptions = "2.00";
+		} else if (feedOptions.equals("$5 Bill")) {
+			moneyHandler.moneyInput(moneyFeed3);
+			System.out.println("You have added $5");
+			feedOptions = "5.00";
+		} else if (feedOptions.equals("$10 Bill")) {
+			moneyHandler.moneyInput(moneyFeed4);
+			System.out.println("You have added $10");
+			feedOptions = "10.00";
 		}
-		
+		System.out.println("You have deposited: $" + moneyHandler.getCurrentBalance());
+	}
 
 	public static void main(String[] args) {
 		Menu menu = new Menu(System.in, System.out);
