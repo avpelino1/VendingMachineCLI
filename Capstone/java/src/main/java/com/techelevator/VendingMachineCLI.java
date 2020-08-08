@@ -92,16 +92,13 @@ public class VendingMachineCLI extends Connector {
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
 				boolean foundChip = chip.importChipInfo(itemCode);
-				
-				if(foundChip) {
-					
-				}
-				else {
+
+				if (foundChip) {
+
+				} else {
 					break;
 				}
-				
-				
-				
+
 				File inputFile = new File("vendingmachine.csv");
 				int counter = 0;
 				try (Scanner inputScanner = new Scanner(inputFile)) {
@@ -109,8 +106,8 @@ public class VendingMachineCLI extends Connector {
 						String food = inputScanner.nextLine();
 						if (!food.contains(itemCode)) {
 							counter += 1;
-						} 
-						
+						}
+
 						if (counter == 16) {
 							System.out.println("Invalid product code.");
 							break;
@@ -174,9 +171,9 @@ public class VendingMachineCLI extends Connector {
 				}
 
 				String costOfItem = chip.getPriceOfItem();
-				
+
 				System.out.println(costOfItem);
-				
+
 				BigDecimal cost = new BigDecimal(costOfItem);
 				BigDecimal costNegative = new BigDecimal(-1);
 				BigDecimal costFinal = cost.multiply(costNegative);
@@ -190,7 +187,7 @@ public class VendingMachineCLI extends Connector {
 					List<Integer> changeOutput = MoneyHandler.changeGiven();
 					MoneyHandler.changeForUser(changeOutput);
 				} catch (NullPointerException e) {
-			//		System.out.println("this will work eventually");
+					// System.out.println("this will work eventually");
 					e.printStackTrace();
 				}
 			}
@@ -244,8 +241,49 @@ public class VendingMachineCLI extends Connector {
 					String food = inputScanner.nextLine();
 					if (food.contains("A1")) {
 						System.out.println(food + "|Stock: " + firstChip.getStockRemaining() + " ");
+					} else if (food.contains("A2")) {
+						System.out.println(food + "|Stock: " + secondChip.getStockRemaining() + " ");
+					} else if (food.contains("A3")) {
+						System.out.println(food + "|Stock: " + thirdChip.getStockRemaining() + " ");
+					} else if (food.contains("A4")) {
+						System.out.println(food + "|Stock: " + fourthChip.getStockRemaining() + " ");
 					}
-
+					else if (food.contains("B1")) {
+						System.out.println(food + "|Stock: " + firstCandy.getStockRemaining() + " ");
+					}
+					else if (food.contains("B2")) {
+						System.out.println(food + "|Stock: " + secondCandy.getStockRemaining() + " ");
+					}
+					else if (food.contains("B3")) {
+						System.out.println(food + "|Stock: " + thirdCandy.getStockRemaining() + " ");
+					}
+					else if (food.contains("B4")) {
+						System.out.println(food + "|Stock: " + fourthCandy.getStockRemaining() + " ");
+					}
+					else if (food.contains("C1")) {
+						System.out.println(food + "|Stock: " + firstDrink.getStockRemaining() + " ");
+					}
+					else if (food.contains("C2")) {
+						System.out.println(food + "|Stock: " + secondDrink.getStockRemaining() + " ");
+					}
+					else if (food.contains("C3")) {
+						System.out.println(food + "|Stock: " + thirdDrink.getStockRemaining() + " ");
+					}
+					else if (food.contains("C4")) {
+						System.out.println(food + "|Stock: " + fourthDrink.getStockRemaining() + " ");
+					}
+					else if (food.contains("D1")) {
+						System.out.println(food + "|Stock: " + firstGum.getStockRemaining() + " ");
+					}
+					else if (food.contains("D2")) {
+						System.out.println(food + "|Stock: " + secondGum.getStockRemaining() + " ");
+					}
+					else if (food.contains("D3")) {
+						System.out.println(food + "|Stock: " + thirdGum.getStockRemaining() + " ");
+					}
+					else if (food.contains("D4")) {
+						System.out.println(food + "|Stock: " + fourthGum.getStockRemaining() + " ");
+					}
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
