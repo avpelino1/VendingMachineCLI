@@ -144,7 +144,7 @@ public class VendingMachineCLI extends Connector {
 				} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
-				String reportString = ">>> " + dateAndTime() + " FEED MONEY: ";
+				String reportString = ">>> " + dateAndTime() + " FEED MONEY: " + chip.getNameOfItem() + " " + chip.getCodeOfItem();
 				prepareReport(reportString, "Log.txt");
 			}
 
@@ -316,7 +316,7 @@ public class VendingMachineCLI extends Connector {
 		return hasStock;
 	}
 
-	public void processMoneyFeed(String[] moneyMenu) {
+	public void processMoneyFeed(String[] moneyMenu) throws FileNotFoundException {
 
 		BigDecimal moneyFeed1 = new BigDecimal(1);
 		BigDecimal moneyFeed2 = new BigDecimal(2);
@@ -347,7 +347,7 @@ public class VendingMachineCLI extends Connector {
 		System.out.println("You have deposited: $" + moneyHandler.getCurrentBalance());
 	}
 	
-	public String dateAndTime() {
+	public static String dateAndTime() {
 		 SimpleDateFormat dateTime = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss"); 
 	  Date date = new Date();
 	  String dateReport = dateTime.format(date);
@@ -362,7 +362,7 @@ public class VendingMachineCLI extends Connector {
 		cli.run();
 	}
 
-	public void prepareReport(String rep, String file) throws FileNotFoundException {
+	public static void prepareReport(String rep, String file) throws FileNotFoundException {
 		try (PrintWriter writer = new PrintWriter(new FileOutputStream(file, true))) {
 			writer.println(rep);
 		}

@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +17,11 @@ public class MoneyHandler extends Connector {
 		return this.currentBalance;
 	}
 
-	public void moneyInput(BigDecimal input) {
+	public void moneyInput(BigDecimal input) throws FileNotFoundException {
 		this.currentBalance = currentBalance.add(input);
+		String reportString = ">>> " + VendingMachineCLI.dateAndTime() + " FEED MONEY: " + input + " " + currentBalance;
+		VendingMachineCLI.prepareReport(reportString, "Log.txt");
+	
 	}
 
 	public static List<Integer> changeReturn = new ArrayList<Integer>();
