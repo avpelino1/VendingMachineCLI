@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -142,7 +144,7 @@ public class VendingMachineCLI extends Connector {
 				} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
-				String reportString = ">>>" + "Time" + "FEED MONEY: ";
+				String reportString = ">>> " + dateAndTime() + " FEED MONEY: ";
 				prepareReport(reportString, "Log.txt");
 			}
 
@@ -343,6 +345,13 @@ public class VendingMachineCLI extends Connector {
 			feedOptions = "10.00";
 		}
 		System.out.println("You have deposited: $" + moneyHandler.getCurrentBalance());
+	}
+	
+	public String dateAndTime() {
+		 SimpleDateFormat dateTime = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss"); 
+	  Date date = new Date();
+	  String dateReport = dateTime.format(date);
+	  return dateReport;
 	}
 
 	public static void main(String[] args) throws IOException {
