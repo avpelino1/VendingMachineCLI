@@ -79,7 +79,6 @@ public class VendingMachineCLI extends Connector {
 
 	public void processPurchaseMenuOptions() {
 		String purchaseMenuOption = "";
-		String theName = "";
 		while (!purchaseMenuOption.equals("Back")) {
 			purchaseMenuOption = (String) menu.getChoiceFromOptions(PURCHASE_MENU);
 
@@ -92,13 +91,10 @@ public class VendingMachineCLI extends Connector {
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
 				boolean foundChip = chip.importChipInfo(itemCode);
+				boolean hasStock = isStockEmpty(itemCode);
 
-				if (foundChip) {
-					
-					
-					
-				slotNumber(itemCode);
-
+				if (foundChip && hasStock) {
+					updateStock(itemCode);
 				} else {
 					break;
 				}
@@ -115,11 +111,10 @@ public class VendingMachineCLI extends Connector {
 						if (counter == 16) {
 							System.out.println("Invalid product code.");
 							break;
-						} else {
-							System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for "
-									+ chip.getPriceOfItem() + ". ");
 						}
 					}
+							System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for "
+									+ chip.getPriceOfItem() + ". ");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -149,7 +144,7 @@ public class VendingMachineCLI extends Connector {
 
 	}
 
-	private void slotNumber(String itemCode) {
+	private void updateStock(String itemCode) {
 		if (itemCode.contains("A")) {
 			System.out.println(chip.yuum());
 			if (itemCode.contains("1")) {
@@ -161,7 +156,8 @@ public class VendingMachineCLI extends Connector {
 			} else if (itemCode.contains("3")) {
 				thirdChip.setStockRemaining();
 				System.out.println("There are " + thirdChip.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("4")) {
+			}
+			if (itemCode.contains("4")) {
 				fourthChip.setStockRemaining();
 				System.out.println("There are " + fourthChip.getStockRemaining() + " remaining.");
 			}
@@ -169,36 +165,147 @@ public class VendingMachineCLI extends Connector {
 			System.out.println(candy.yuum());
 			if (itemCode.contains("1")) {
 				firstCandy.setStockRemaining();
+				System.out.println("There are " + firstCandy.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("2")) {
 				secondCandy.setStockRemaining();
+				System.out.println("There are " + secondCandy.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("3")) {
 				thirdCandy.setStockRemaining();
+				System.out.println("There are " + thirdCandy.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("4")) {
 				fourthCandy.setStockRemaining();
+				System.out.println("There are " + fourthCandy.getStockRemaining() + " remaining.");
 			}
 		} else if (itemCode.contains("C")) {
 			System.out.println(drink.yuum());
 			if (itemCode.contains("1")) {
 				firstDrink.setStockRemaining();
+				System.out.println("There are " + firstDrink.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("2")) {
 				secondDrink.setStockRemaining();
+				System.out.println("There are " + secondDrink.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("3")) {
 				thirdDrink.setStockRemaining();
+				System.out.println("There are " + thirdDrink.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("4")) {
 				fourthDrink.setStockRemaining();
+				System.out.println("There are " + fourthDrink.getStockRemaining() + " remaining.");
 			}
 		} else if (itemCode.contains("D")) {
 			System.out.println(gum.yuum());
 			if (itemCode.contains("1")) {
 				firstGum.setStockRemaining();
+				System.out.println("There are " + firstGum.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("2")) {
 				secondGum.setStockRemaining();
+				System.out.println("There are " + secondGum.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("3")) {
 				thirdGum.setStockRemaining();
+				System.out.println("There are " + thirdGum.getStockRemaining() + " remaining.");
 			} else if (itemCode.contains("4")) {
+			} else {
 				fourthGum.setStockRemaining();
+				System.out.println("There are " + fourthGum.getStockRemaining() + " remaining.");
 			}
 		}
+	}
+
+	private boolean isStockEmpty(String itemCode) {
+		boolean hasStock = true;
+		if (itemCode.contains("A")) {
+			System.out.println(chip.yuum());
+			if (itemCode.contains("1")) {
+				if (firstChip.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("2")) {
+				if (secondChip.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("3")) {
+				if (thirdChip.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("4")) {
+				if (fourthChip.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			}
+		} else if (itemCode.contains("B")) {
+			System.out.println(candy.yuum());
+			if (itemCode.contains("1")) {
+				if (firstCandy.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("2")) {
+				if (secondCandy.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("3")) {
+				if (thirdCandy.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("4")) {
+				if (fourthCandy.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			}
+		} else if (itemCode.contains("C")) {
+			System.out.println(drink.yuum());
+			if (itemCode.contains("1")) {
+				if (firstDrink.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("2")) {
+				if (secondDrink.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("3")) {
+				if (thirdDrink.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("4")) {
+				if (fourthDrink.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			}
+		} else if (itemCode.contains("D")) {
+			System.out.println(gum.yuum());
+			if (itemCode.contains("1")) {
+				if (firstGum.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("2")) {
+				if (secondGum.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("3")) {
+				if (thirdGum.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			} else if (itemCode.contains("4")) {
+				if (fourthGum.getStockRemaining() < 1) {
+					hasStock = false;
+					System.out.println("You cannot purchase this. There is not stock left.");
+				}
+			}
+		}
+		return hasStock;
 	}
 
 	public void processMoneyFeed(String[] moneyMenu) {

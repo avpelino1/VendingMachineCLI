@@ -46,7 +46,7 @@ public class Candy implements Items1 {
 	@Override
 	public String yuum() {
 		// TODO Auto-generated method stub
-		return "Munch Much, Yum";
+		return "Munch Munch, Yum";
 	}
 	
 	
