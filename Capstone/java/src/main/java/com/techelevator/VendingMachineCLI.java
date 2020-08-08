@@ -39,13 +39,13 @@ public class VendingMachineCLI extends Connector {
 	Drink secondDrink = new Drink();
 	Drink thirdDrink = new Drink();
 	Drink fourthDrink = new Drink();
-	
+
 	Gum gum = new Gum();
 	Gum firstGum = new Gum();
 	Gum secondGum = new Gum();
 	Gum thirdGum = new Gum();
 	Gum fourthGum = new Gum();
-	
+
 	private BigDecimal currentBalance = BigDecimal.valueOf(0);
 	MoneyHandler moneyHandler = new MoneyHandler(currentBalance);
 
@@ -91,7 +91,17 @@ public class VendingMachineCLI extends Connector {
 				System.out.println("Please enter a code of the item you want to purchase: ");
 				Scanner codeOfItem = new Scanner(System.in);
 				String itemCode = codeOfItem.nextLine();
-				chip.importChipInfo(itemCode);
+				boolean foundChip = chip.importChipInfo(itemCode);
+				
+				if(foundChip) {
+					
+				}
+				else {
+					break;
+				}
+				
+				
+				
 				File inputFile = new File("vendingmachine.csv");
 				int counter = 0;
 				try (Scanner inputScanner = new Scanner(inputFile)) {
@@ -99,9 +109,11 @@ public class VendingMachineCLI extends Connector {
 						String food = inputScanner.nextLine();
 						if (!food.contains(itemCode)) {
 							counter += 1;
-						} else if (counter == 16) {
+						} 
+						
+						if (counter == 16) {
 							System.out.println("Invalid product code.");
-//							menu.displayMenuOptions(PURCHASE_MENU);
+							break;
 						} else {
 							System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for "
 									+ chip.getPriceOfItem() + ". ");
@@ -110,7 +122,7 @@ public class VendingMachineCLI extends Connector {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 				if (itemCode.contains("A")) {
 					System.out.println(chip.yuum());
 					if (itemCode.contains("1")) {
@@ -162,6 +174,9 @@ public class VendingMachineCLI extends Connector {
 				}
 
 				String costOfItem = chip.getPriceOfItem();
+				
+				System.out.println(costOfItem);
+				
 				BigDecimal cost = new BigDecimal(costOfItem);
 				BigDecimal costNegative = new BigDecimal(-1);
 				BigDecimal costFinal = cost.multiply(costNegative);
@@ -172,10 +187,11 @@ public class VendingMachineCLI extends Connector {
 			}
 			if (purchaseMenuOption.equals("Finish Transaction")) {
 				try {
-					List<Integer> changeOutput = MoneyHandler.changeGiven(moneyHandler);
+					List<Integer> changeOutput = MoneyHandler.changeGiven();
 					MoneyHandler.changeForUser(changeOutput);
 				} catch (NullPointerException e) {
-					System.out.println("this will work eventually");
+			//		System.out.println("this will work eventually");
+					e.printStackTrace();
 				}
 			}
 
@@ -226,10 +242,10 @@ public class VendingMachineCLI extends Connector {
 			try (Scanner inputScanner = new Scanner(inputFile)) {
 				while (inputScanner.hasNextLine()) {
 					String food = inputScanner.nextLine();
-					if (food.contains("A1")){
+					if (food.contains("A1")) {
 						System.out.println(food + "|Stock: " + firstChip.getStockRemaining() + " ");
 					}
-					
+
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

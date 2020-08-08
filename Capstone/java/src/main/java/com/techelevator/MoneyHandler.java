@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MoneyHandler extends Connector {
-	private BigDecimal currentBalance;
+	private static BigDecimal currentBalance;
 
 	public MoneyHandler(BigDecimal currentBalance) {
 		this.currentBalance = currentBalance;
@@ -22,7 +22,7 @@ public class MoneyHandler extends Connector {
 
 	public static List<Integer> changeReturn = new ArrayList<Integer>();
 
-	public List<Integer> changeGiven( ) {
+	public static List<Integer> changeGiven( ) {
 		BigDecimal oneHundred = new BigDecimal(100);
 		BigDecimal test = currentBalance.multiply(oneHundred);
 		int changeMoney = test.intValue();
@@ -63,10 +63,5 @@ public class MoneyHandler extends Connector {
 		
 		
 		
-	}
-
-	public static List<Integer> changeGiven(MoneyHandler moneyHandler) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

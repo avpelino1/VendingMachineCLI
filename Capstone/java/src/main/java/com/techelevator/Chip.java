@@ -18,7 +18,7 @@ public class Chip extends Connector implements Items1 {
 	public Chip() {
 	}
 		
-	public void importChipInfo(String itemCode) {
+	public boolean importChipInfo(String itemCode) {
 		File inputFile = new File("vendingmachine.csv");
 		try (Scanner inputScanner = new Scanner(inputFile)) {
 			while (inputScanner.hasNextLine()) {
@@ -28,12 +28,15 @@ public class Chip extends Connector implements Items1 {
 					this.code = info[0];
 					this.name = info[1];
 					this.price = info[2];
+					return true;
 				}
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return false;
 	}
 
 	public String getNameOfItem() {
