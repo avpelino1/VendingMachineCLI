@@ -23,6 +23,9 @@ public class VendingMachineCLI extends Connector {
 	public Menu menu;
 
 	Chip chip = new Chip();
+	Candy candy = new Candy();
+	Drink drink = new Drink();
+	Gum gum = new Gum();
 	private BigDecimal currentBalance = BigDecimal.valueOf(0);
 	MoneyHandler moneyHandler = new MoneyHandler(currentBalance);
 
@@ -81,13 +84,26 @@ public class VendingMachineCLI extends Connector {
 //							menu.displayMenuOptions(PURCHASE_MENU);
 						} else {
 							System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for "
-									+ chip.getPriceOfItem());
+									+ chip.getPriceOfItem() + ". ");
 						}
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
+				if (itemCode.contains("A")) {
+					System.out.println(chip.yuum());
+				}
+				else if (itemCode.contains("B")) {
+					System.out.println(candy.yuum());
+				}
+				else if (itemCode.contains("C")) {
+					System.out.println(drink.yuum());
+					}
+				else if (itemCode.contains("D")) {
+					System.out.println(gum.yuum());
+				}
+				
 				String costOfItem = chip.getPriceOfItem();
 				BigDecimal cost = new BigDecimal(costOfItem);
 				BigDecimal costNegative = new BigDecimal(-1);
