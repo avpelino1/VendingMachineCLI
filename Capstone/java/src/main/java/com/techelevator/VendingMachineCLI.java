@@ -94,6 +94,7 @@ public class VendingMachineCLI extends Connector {
 				boolean foundChip = chip.importChipInfo(itemCode);
 
 				if (foundChip) {
+				slotNumber(itemCode);
 
 				} else {
 					break;
@@ -120,55 +121,7 @@ public class VendingMachineCLI extends Connector {
 					e.printStackTrace();
 				}
 
-				if (itemCode.contains("A")) {
-					System.out.println(chip.yuum());
-					if (itemCode.contains("1")) {
-						firstChip.setStockRemaining();
-						System.out.println("There are " + firstChip.getStockRemaining() + " remaining.");
-					} else if (itemCode.contains("2")) {
-						secondChip.setStockRemaining();
-						System.out.println("There are " + secondChip.getStockRemaining() + " remaining.");
-					} else if (itemCode.contains("3")) {
-						thirdChip.setStockRemaining();
-						System.out.println("There are " + thirdChip.getStockRemaining() + " remaining.");
-					} else if (itemCode.contains("4")) {
-						fourthChip.setStockRemaining();
-						System.out.println("There are " + fourthChip.getStockRemaining() + " remaining.");
-					}
-				} else if (itemCode.contains("B")) {
-					System.out.println(candy.yuum());
-					if (itemCode.contains("1")) {
-						firstCandy.setStockRemaining();
-					} else if (itemCode.contains("2")) {
-						secondCandy.setStockRemaining();
-					} else if (itemCode.contains("3")) {
-						thirdCandy.setStockRemaining();
-					} else if (itemCode.contains("4")) {
-						fourthCandy.setStockRemaining();
-					}
-				} else if (itemCode.contains("C")) {
-					System.out.println(drink.yuum());
-					if (itemCode.contains("1")) {
-						firstDrink.setStockRemaining();
-					} else if (itemCode.contains("2")) {
-						secondDrink.setStockRemaining();
-					} else if (itemCode.contains("3")) {
-						thirdDrink.setStockRemaining();
-					} else if (itemCode.contains("4")) {
-						fourthDrink.setStockRemaining();
-					}
-				} else if (itemCode.contains("D")) {
-					System.out.println(gum.yuum());
-					if (itemCode.contains("1")) {
-						firstGum.setStockRemaining();
-					} else if (itemCode.contains("2")) {
-						secondGum.setStockRemaining();
-					} else if (itemCode.contains("3")) {
-						thirdGum.setStockRemaining();
-					} else if (itemCode.contains("4")) {
-						fourthGum.setStockRemaining();
-					}
-				}
+//				slotNumber(itemCode);
 
 				String costOfItem = chip.getPriceOfItem();
 
@@ -194,6 +147,58 @@ public class VendingMachineCLI extends Connector {
 
 		}
 
+	}
+
+	private void slotNumber(String itemCode) {
+		if (itemCode.contains("A")) {
+			System.out.println(chip.yuum());
+			if (itemCode.contains("1")) {
+				firstChip.setStockRemaining();
+				System.out.println("There are " + firstChip.getStockRemaining() + " remaining.");
+			} else if (itemCode.contains("2")) {
+				secondChip.setStockRemaining();
+				System.out.println("There are " + secondChip.getStockRemaining() + " remaining.");
+			} else if (itemCode.contains("3")) {
+				thirdChip.setStockRemaining();
+				System.out.println("There are " + thirdChip.getStockRemaining() + " remaining.");
+			} else if (itemCode.contains("4")) {
+				fourthChip.setStockRemaining();
+				System.out.println("There are " + fourthChip.getStockRemaining() + " remaining.");
+			}
+		} else if (itemCode.contains("B")) {
+			System.out.println(candy.yuum());
+			if (itemCode.contains("1")) {
+				firstCandy.setStockRemaining();
+			} else if (itemCode.contains("2")) {
+				secondCandy.setStockRemaining();
+			} else if (itemCode.contains("3")) {
+				thirdCandy.setStockRemaining();
+			} else if (itemCode.contains("4")) {
+				fourthCandy.setStockRemaining();
+			}
+		} else if (itemCode.contains("C")) {
+			System.out.println(drink.yuum());
+			if (itemCode.contains("1")) {
+				firstDrink.setStockRemaining();
+			} else if (itemCode.contains("2")) {
+				secondDrink.setStockRemaining();
+			} else if (itemCode.contains("3")) {
+				thirdDrink.setStockRemaining();
+			} else if (itemCode.contains("4")) {
+				fourthDrink.setStockRemaining();
+			}
+		} else if (itemCode.contains("D")) {
+			System.out.println(gum.yuum());
+			if (itemCode.contains("1")) {
+				firstGum.setStockRemaining();
+			} else if (itemCode.contains("2")) {
+				secondGum.setStockRemaining();
+			} else if (itemCode.contains("3")) {
+				thirdGum.setStockRemaining();
+			} else if (itemCode.contains("4")) {
+				fourthGum.setStockRemaining();
+			}
+		}
 	}
 
 	public void processMoneyFeed(String[] moneyMenu) {
@@ -241,47 +246,35 @@ public class VendingMachineCLI extends Connector {
 					String food = inputScanner.nextLine();
 					if (food.contains("A1")) {
 						System.out.println(food + "|Stock: " + firstChip.getStockRemaining() + " ");
-					} else if (food.contains("A2")) {
+					}  if (food.contains("A2")) {
 						System.out.println(food + "|Stock: " + secondChip.getStockRemaining() + " ");
-					} else if (food.contains("A3")) {
+					}  if (food.contains("A3")) {
 						System.out.println(food + "|Stock: " + thirdChip.getStockRemaining() + " ");
-					} else if (food.contains("A4")) {
+					}  if (food.contains("A4")) {
 						System.out.println(food + "|Stock: " + fourthChip.getStockRemaining() + " ");
-					}
-					else if (food.contains("B1")) {
+					}  if (food.contains("B1")) {
 						System.out.println(food + "|Stock: " + firstCandy.getStockRemaining() + " ");
-					}
-					else if (food.contains("B2")) {
+					}  if (food.contains("B2")) {
 						System.out.println(food + "|Stock: " + secondCandy.getStockRemaining() + " ");
-					}
-					else if (food.contains("B3")) {
+					}  if (food.contains("B3")) {
 						System.out.println(food + "|Stock: " + thirdCandy.getStockRemaining() + " ");
-					}
-					else if (food.contains("B4")) {
+					}  if (food.contains("B4")) {
 						System.out.println(food + "|Stock: " + fourthCandy.getStockRemaining() + " ");
-					}
-					else if (food.contains("C1")) {
+					}  if (food.contains("C1")) {
 						System.out.println(food + "|Stock: " + firstDrink.getStockRemaining() + " ");
-					}
-					else if (food.contains("C2")) {
+					}  if (food.contains("C2")) {
 						System.out.println(food + "|Stock: " + secondDrink.getStockRemaining() + " ");
-					}
-					else if (food.contains("C3")) {
+					}  if (food.contains("C3")) {
 						System.out.println(food + "|Stock: " + thirdDrink.getStockRemaining() + " ");
-					}
-					else if (food.contains("C4")) {
+					}  if (food.contains("C4")) {
 						System.out.println(food + "|Stock: " + fourthDrink.getStockRemaining() + " ");
-					}
-					else if (food.contains("D1")) {
+					}  if (food.contains("D1")) {
 						System.out.println(food + "|Stock: " + firstGum.getStockRemaining() + " ");
-					}
-					else if (food.contains("D2")) {
+					}  if (food.contains("D2")) {
 						System.out.println(food + "|Stock: " + secondGum.getStockRemaining() + " ");
-					}
-					else if (food.contains("D3")) {
+					}  if (food.contains("D3")) {
 						System.out.println(food + "|Stock: " + thirdGum.getStockRemaining() + " ");
-					}
-					else if (food.contains("D4")) {
+					}  if (food.contains("D4")) {
 						System.out.println(food + "|Stock: " + fourthGum.getStockRemaining() + " ");
 					}
 				}

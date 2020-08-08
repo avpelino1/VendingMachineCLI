@@ -31,15 +31,15 @@ public class MoneyHandler extends Connector {
 		int dimes = 0;
 		int nickels = 0;
 
-		if (changeMoney >= 25) {
+		while (changeMoney >= 25) {
 			quarters += 1;
 			changeMoney -= 25;
 		}
-		else if (changeMoney >= 10) {
+		while (changeMoney >= 10) {
 			dimes += 1;
 			changeMoney -= 10;
 		}
-		else if (changeMoney >= 5) {
+		while (changeMoney >= 5) {
 			nickels += 1;
 			changeMoney -= 5;
 		}
