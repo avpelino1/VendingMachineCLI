@@ -23,9 +23,29 @@ public class VendingMachineCLI extends Connector {
 	public Menu menu;
 
 	Chip chip = new Chip();
+	Chip firstChip = new Chip();
+	Chip secondChip = new Chip();
+	Chip thirdChip = new Chip();
+	Chip fourthChip = new Chip();
+
 	Candy candy = new Candy();
+	Candy firstCandy = new Candy();
+	Candy secondCandy = new Candy();
+	Candy thirdCandy = new Candy();
+	Candy fourthCandy = new Candy();
+
 	Drink drink = new Drink();
+	Drink firstDrink = new Drink();
+	Drink secondDrink = new Drink();
+	Drink thirdDrink = new Drink();
+	Drink fourthDrink = new Drink();
+	
 	Gum gum = new Gum();
+	Gum firstGum = new Gum();
+	Gum secondGum = new Gum();
+	Gum thirdGum = new Gum();
+	Gum fourthGum = new Gum();
+	
 	private BigDecimal currentBalance = BigDecimal.valueOf(0);
 	MoneyHandler moneyHandler = new MoneyHandler(currentBalance);
 
@@ -90,15 +110,55 @@ public class VendingMachineCLI extends Connector {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
+				
 				if (itemCode.contains("A")) {
 					System.out.println(chip.yuum());
+					if (itemCode.contains("1")) {
+						firstChip.setStockRemaining();
+						System.out.println("There are " + firstChip.getStockRemaining() + " remaining.");
+					} else if (itemCode.contains("2")) {
+						secondChip.setStockRemaining();
+						System.out.println("There are " + secondChip.getStockRemaining() + " remaining.");
+					} else if (itemCode.contains("3")) {
+						thirdChip.setStockRemaining();
+						System.out.println("There are " + thirdChip.getStockRemaining() + " remaining.");
+					} else if (itemCode.contains("4")) {
+						fourthChip.setStockRemaining();
+						System.out.println("There are " + fourthChip.getStockRemaining() + " remaining.");
+					}
 				} else if (itemCode.contains("B")) {
 					System.out.println(candy.yuum());
+					if (itemCode.contains("1")) {
+						firstCandy.setStockRemaining();
+					} else if (itemCode.contains("2")) {
+						secondCandy.setStockRemaining();
+					} else if (itemCode.contains("3")) {
+						thirdCandy.setStockRemaining();
+					} else if (itemCode.contains("4")) {
+						fourthCandy.setStockRemaining();
+					}
 				} else if (itemCode.contains("C")) {
 					System.out.println(drink.yuum());
+					if (itemCode.contains("1")) {
+						firstDrink.setStockRemaining();
+					} else if (itemCode.contains("2")) {
+						secondDrink.setStockRemaining();
+					} else if (itemCode.contains("3")) {
+						thirdDrink.setStockRemaining();
+					} else if (itemCode.contains("4")) {
+						fourthDrink.setStockRemaining();
+					}
 				} else if (itemCode.contains("D")) {
 					System.out.println(gum.yuum());
+					if (itemCode.contains("1")) {
+						firstGum.setStockRemaining();
+					} else if (itemCode.contains("2")) {
+						secondGum.setStockRemaining();
+					} else if (itemCode.contains("3")) {
+						thirdGum.setStockRemaining();
+					} else if (itemCode.contains("4")) {
+						fourthGum.setStockRemaining();
+					}
 				}
 
 				String costOfItem = chip.getPriceOfItem();

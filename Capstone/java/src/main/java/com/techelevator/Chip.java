@@ -13,7 +13,8 @@ public class Chip extends Connector implements Items1 {
 	public String code;
 	public String price;
 	public int stockRemaining = 5;
-
+	
+	
 	public Chip() {
 	}
 		
