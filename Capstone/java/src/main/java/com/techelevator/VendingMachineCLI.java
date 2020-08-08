@@ -71,14 +71,16 @@ public class VendingMachineCLI extends Connector {
 				String itemCode = codeOfItem.nextLine();
 				chip.importChipInfo(itemCode);
 				System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for " + chip.getPriceOfItem());
-					
-				String costOfItem = chip.getPriceOfItem();
-				BigDecimal cost = new BigDecimal (costOfItem);
-				BigDecimal costNegative = new BigDecimal(-1);
-				BigDecimal costFinal = cost.multiply(costNegative);
-				MoneyHandler.moneyInput(costFinal);
-			
-				System.out.println("You have " + costFinal + " remaining");
+//	=================================================================
+//          THIS IS CAUSING US ERRORS CURRENTLY, I fixed the nullPointException this caused in MoneyHandler
+// =================================================================				
+//				String costOfItem = chip.getPriceOfItem();
+//				BigDecimal cost = new BigDecimal (costOfItem);
+//				BigDecimal costNegative = new BigDecimal(-1);
+//				BigDecimal costFinal = cost.multiply(costNegative);
+//				MoneyHandler.moneyInput(costFinal);
+//			
+//				System.out.println("You have " + costFinal + " remaining");
 				
 				
 				
