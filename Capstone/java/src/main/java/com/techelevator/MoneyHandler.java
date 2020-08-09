@@ -13,8 +13,8 @@ public class MoneyHandler extends Connector {
 		this.currentBalance = currentBalance;
 	}
 
-	public BigDecimal getCurrentBalance() {
-		return this.currentBalance;
+	public static BigDecimal getCurrentBalance() {
+		return currentBalance;
 	}
 
 	public void moneyInput(BigDecimal input) throws FileNotFoundException {
@@ -23,9 +23,10 @@ public class MoneyHandler extends Connector {
 		double amount2 = Double.parseDouble(amount1);
 		String amount3 = currentBalance.toString();
 		double amount4 = Double.parseDouble(amount3);
+		if (amount2 > 0) {
 		String reportString = ">>> " + VendingMachineCLI.dateAndTime() + " FEED MONEY: $" + amount2 + " $" + amount4;
 		VendingMachineCLI.prepareReport(reportString, "Log.txt");
-	
+		}
 	}
 
 	public static List<Integer> changeReturn = new ArrayList<Integer>();
@@ -60,7 +61,7 @@ public class MoneyHandler extends Connector {
 		return changeReturn;
 	}
 	
-	public static void changeForUser(List<Integer> coins) {
+	public static void changeForUser(List<Integer> coins) throws FileNotFoundException {
 		int quarterReturns = coins.get(0);
 		int dimesReturns = coins.get(1);
 		int nickelReturns = coins.get(2);
@@ -69,7 +70,8 @@ public class MoneyHandler extends Connector {
 		System.out.println("Your change in dimes: " + dimesReturns);
 		System.out.println("Your change in nickels: " + nickelReturns);
 
-		
+		String reportString = ">>> " + VendingMachineCLI.dateAndTime() + " GIVE CHANGE: $" + getCurrentBalance() + " $0.00";
+		VendingMachineCLI.prepareReport(reportString, "Log.txt");
 		
 		
 	}

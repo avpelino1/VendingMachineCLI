@@ -138,16 +138,17 @@ public class VendingMachineCLI extends Connector {
 
 			}
 			if (purchaseMenuOption.equals("Finish Transaction")) {
+				BigDecimal one = new BigDecimal(chip.getPriceOfItem());
+				BigDecimal two = one.add(moneyHandler.getCurrentBalance());
+				String reportString = ">>> " + dateAndTime() + " " + chip.getNameOfItem() + " " + chip.getCodeOfItem() + " $" + two + " $" + moneyHandler.getCurrentBalance() ;
+				prepareReport(reportString, "Log.txt");
 				try {
 					List<Integer> changeOutput = MoneyHandler.changeGiven();
 					MoneyHandler.changeForUser(changeOutput);
 				} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
-				BigDecimal one = new BigDecimal(chip.getPriceOfItem());
-				BigDecimal two = one.add(moneyHandler.getCurrentBalance());
-				String reportString = ">>> " + dateAndTime() + " " + chip.getNameOfItem() + " " + chip.getCodeOfItem() + " $" + two + " $" + moneyHandler.getCurrentBalance() ;
-				prepareReport(reportString, "Log.txt");
+
 			}
 
 		}
@@ -223,7 +224,6 @@ public class VendingMachineCLI extends Connector {
 	private boolean isStockEmpty(String itemCode) {
 		boolean hasStock = true;
 		if (itemCode.contains("A")) {
-			System.out.println(chip.yuum());
 			if (itemCode.contains("1")) {
 				if (firstChip.getStockRemaining() < 1) {
 					hasStock = false;
@@ -246,7 +246,6 @@ public class VendingMachineCLI extends Connector {
 				}
 			}
 		} else if (itemCode.contains("B")) {
-			System.out.println(candy.yuum());
 			if (itemCode.contains("1")) {
 				if (firstCandy.getStockRemaining() < 1) {
 					hasStock = false;
@@ -269,7 +268,6 @@ public class VendingMachineCLI extends Connector {
 				}
 			}
 		} else if (itemCode.contains("C")) {
-			System.out.println(drink.yuum());
 			if (itemCode.contains("1")) {
 				if (firstDrink.getStockRemaining() < 1) {
 					hasStock = false;
@@ -292,7 +290,6 @@ public class VendingMachineCLI extends Connector {
 				}
 			}
 		} else if (itemCode.contains("D")) {
-			System.out.println(gum.yuum());
 			if (itemCode.contains("1")) {
 				if (firstGum.getStockRemaining() < 1) {
 					hasStock = false;
