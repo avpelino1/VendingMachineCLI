@@ -24,7 +24,7 @@ public class MoneyHandler extends Connector {
 		String amount3 = currentBalance.toString();
 		double amount4 = Double.parseDouble(amount3);
 		if (amount2 > 0) {
-		String reportString = ">>> " + VendingMachineCLI.dateAndTime() + " FEED MONEY: $" + amount2 + " $" + amount4;
+		String reportString = VendingMachineCLI.dateAndTime() + " FEED MONEY: $" + amount2 + "0" + " $" + amount4 + "0";
 		VendingMachineCLI.prepareReport(reportString, "Log.txt");
 		}
 	}
@@ -70,7 +70,7 @@ public class MoneyHandler extends Connector {
 		System.out.println("Your change in dimes: " + dimesReturns);
 		System.out.println("Your change in nickels: " + nickelReturns);
 
-		String reportString = ">>> " + VendingMachineCLI.dateAndTime() + " GIVE CHANGE: $" + getCurrentBalance() + " $0.00";
+		String reportString = VendingMachineCLI.dateAndTime() + " GIVE CHANGE: $" + getCurrentBalance() + " $0.00";
 		VendingMachineCLI.prepareReport(reportString, "Log.txt");
 		
 		

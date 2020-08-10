@@ -19,8 +19,9 @@ public class VendingMachineCLI extends Connector {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
+
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE,
-			MAIN_MENU_OPTION_EXIT };
+			MAIN_MENU_OPTION_EXIT, };
 
 	private static final String[] PURCHASE_MENU = { "Feed Money", "Select Product", "Finish Transaction", "Back" };
 	private static final String[] MONEY_MENU = { "$1 Bill", "$2 Bill", "$5 Bill", "$10 Bill", "Back" };
@@ -56,7 +57,6 @@ public class VendingMachineCLI extends Connector {
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
-
 	}
 
 	public void run() throws FileNotFoundException {
@@ -119,8 +119,16 @@ public class VendingMachineCLI extends Connector {
 							break;
 						}
 					}
-							System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for "
-									+ chip.getPriceOfItem() + ". ");
+					System.out.println("You have chosen to purchase " + chip.getNameOfItem() + " for "
+							+ chip.getPriceOfItem() + ". ");
+					BigDecimal one = new BigDecimal(chip.getPriceOfItem());
+					BigDecimal costNegative = new BigDecimal(-1);
+					BigDecimal costFinal = one.multiply(costNegative);
+					BigDecimal two = costFinal.add(moneyHandler.getCurrentBalance());
+					String reportString = dateAndTime() + " " + chip.getNameOfItem() + " " + chip.getCodeOfItem() + " $"
+							+ moneyHandler.getCurrentBalance() + " $" + two;
+					prepareReport(reportString, "Log.txt");
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -138,10 +146,10 @@ public class VendingMachineCLI extends Connector {
 
 			}
 			if (purchaseMenuOption.equals("Finish Transaction")) {
-				BigDecimal one = new BigDecimal(chip.getPriceOfItem());
-				BigDecimal two = one.add(moneyHandler.getCurrentBalance());
-				String reportString = ">>> " + dateAndTime() + " " + chip.getNameOfItem() + " " + chip.getCodeOfItem() + " $" + two + " $" + moneyHandler.getCurrentBalance() ;
-				prepareReport(reportString, "Log.txt");
+//				BigDecimal one = new BigDecimal(chip.getPriceOfItem());
+//				BigDecimal two = one.add(moneyHandler.getCurrentBalance());
+//				String reportString = ">>> " + dateAndTime() + " " + chip.getNameOfItem() + " " + chip.getCodeOfItem() + " $" + two + " $" + moneyHandler.getCurrentBalance() ;
+//				prepareReport(reportString, "Log.txt");
 				try {
 					List<Integer> changeOutput = MoneyHandler.changeGiven();
 					MoneyHandler.changeForUser(changeOutput);
@@ -158,62 +166,62 @@ public class VendingMachineCLI extends Connector {
 	private void updateStock(String itemCode) {
 		if (itemCode.contains("A")) {
 			System.out.println(chip.yuum());
-			if (itemCode.contains("1")) {
-				firstChip.setStockRemaining();
-				System.out.println("There are " + firstChip.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("2")) {
-				secondChip.setStockRemaining();
-				System.out.println("There are " + secondChip.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("3")) {
-				thirdChip.setStockRemaining();
-				System.out.println("There are " + thirdChip.getStockRemaining() + " remaining.");
-			}
-			if (itemCode.contains("4")) {
-				fourthChip.setStockRemaining();
-				System.out.println("There are " + fourthChip.getStockRemaining() + " remaining.");
-			}
+		}
+		if (itemCode.contains("A1")) {
+			firstChip.setStockRemaining();
+			System.out.println("There are " + firstChip.getStockRemaining() + " remaining.");
+		} else if (itemCode.contains("A2")) {
+			secondChip.setStockRemaining();
+			System.out.println("There are " + secondChip.getStockRemaining() + " remaining.");
+		} else if (itemCode.contains("A3")) {
+			thirdChip.setStockRemaining();
+			System.out.println("There are " + thirdChip.getStockRemaining() + " remaining.");
+		}
+		if (itemCode.contains("A4")) {
+			fourthChip.setStockRemaining();
+			System.out.println("There are " + fourthChip.getStockRemaining() + " remaining.");
 		} else if (itemCode.contains("B")) {
 			System.out.println(candy.yuum());
-			if (itemCode.contains("1")) {
+			if (itemCode.contains("B1")) {
 				firstCandy.setStockRemaining();
 				System.out.println("There are " + firstCandy.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("2")) {
+			} else if (itemCode.contains("B2")) {
 				secondCandy.setStockRemaining();
 				System.out.println("There are " + secondCandy.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("3")) {
+			} else if (itemCode.contains("B3")) {
 				thirdCandy.setStockRemaining();
 				System.out.println("There are " + thirdCandy.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("4")) {
+			} else if (itemCode.contains("B4")) {
 				fourthCandy.setStockRemaining();
 				System.out.println("There are " + fourthCandy.getStockRemaining() + " remaining.");
 			}
 		} else if (itemCode.contains("C")) {
 			System.out.println(drink.yuum());
-			if (itemCode.contains("1")) {
+			if (itemCode.contains("C1")) {
 				firstDrink.setStockRemaining();
 				System.out.println("There are " + firstDrink.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("2")) {
+			} else if (itemCode.contains("C2")) {
 				secondDrink.setStockRemaining();
 				System.out.println("There are " + secondDrink.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("3")) {
+			} else if (itemCode.contains("C3")) {
 				thirdDrink.setStockRemaining();
 				System.out.println("There are " + thirdDrink.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("4")) {
+			} else if (itemCode.contains("C4")) {
 				fourthDrink.setStockRemaining();
 				System.out.println("There are " + fourthDrink.getStockRemaining() + " remaining.");
 			}
 		} else if (itemCode.contains("D")) {
 			System.out.println(gum.yuum());
-			if (itemCode.contains("1")) {
+			if (itemCode.contains("D1")) {
 				firstGum.setStockRemaining();
 				System.out.println("There are " + firstGum.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("2")) {
+			} else if (itemCode.contains("D2")) {
 				secondGum.setStockRemaining();
 				System.out.println("There are " + secondGum.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("3")) {
+			} else if (itemCode.contains("D3")) {
 				thirdGum.setStockRemaining();
 				System.out.println("There are " + thirdGum.getStockRemaining() + " remaining.");
-			} else if (itemCode.contains("4")) {
+			} else if (itemCode.contains("D4")) {
 			} else {
 				fourthGum.setStockRemaining();
 				System.out.println("There are " + fourthGum.getStockRemaining() + " remaining.");
@@ -224,88 +232,88 @@ public class VendingMachineCLI extends Connector {
 	private boolean isStockEmpty(String itemCode) {
 		boolean hasStock = true;
 		if (itemCode.contains("A")) {
-			if (itemCode.contains("1")) {
+			if (itemCode.contains("A1")) {
 				if (firstChip.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("2")) {
+			} else if (itemCode.contains("A2")) {
 				if (secondChip.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("3")) {
+			} else if (itemCode.contains("A3")) {
 				if (thirdChip.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("4")) {
+			} else if (itemCode.contains("A4")) {
 				if (fourthChip.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
 			}
 		} else if (itemCode.contains("B")) {
-			if (itemCode.contains("1")) {
+			if (itemCode.contains("B1")) {
 				if (firstCandy.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("2")) {
+			} else if (itemCode.contains("B2")) {
 				if (secondCandy.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("3")) {
+			} else if (itemCode.contains("B3")) {
 				if (thirdCandy.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("4")) {
+			} else if (itemCode.contains("B4")) {
 				if (fourthCandy.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
 			}
 		} else if (itemCode.contains("C")) {
-			if (itemCode.contains("1")) {
+			if (itemCode.contains("C1")) {
 				if (firstDrink.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("2")) {
+			} else if (itemCode.contains("C2")) {
 				if (secondDrink.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("3")) {
+			} else if (itemCode.contains("C3")) {
 				if (thirdDrink.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("4")) {
+			} else if (itemCode.contains("C4")) {
 				if (fourthDrink.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
 			}
 		} else if (itemCode.contains("D")) {
-			if (itemCode.contains("1")) {
+			if (itemCode.contains("D1")) {
 				if (firstGum.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("2")) {
+			} else if (itemCode.contains("D2")) {
 				if (secondGum.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("3")) {
+			} else if (itemCode.contains("D3")) {
 				if (thirdGum.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
 				}
-			} else if (itemCode.contains("4")) {
+			} else if (itemCode.contains("D4")) {
 				if (fourthGum.getStockRemaining() < 1) {
 					hasStock = false;
 					System.out.println("You cannot purchase this. There is not stock left.");
@@ -345,18 +353,18 @@ public class VendingMachineCLI extends Connector {
 		}
 		System.out.println("You have deposited: $" + moneyHandler.getCurrentBalance());
 	}
-	
+
 	public static String dateAndTime() {
-		 SimpleDateFormat dateTime = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss"); 
-	  Date date = new Date();
-	  String dateReport = dateTime.format(date);
-	  return dateReport;
+		SimpleDateFormat dateTime = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+		Date date = new Date();
+		String dateReport = dateTime.format(date);
+		return dateReport;
 	}
 
 	public static void main(String[] args) throws IOException {
 		Menu menu = new Menu(System.in, System.out);
 		File reportFile = new File("Log.txt");
-				reportFile.createNewFile();
+		reportFile.createNewFile();
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
 	}

@@ -9,6 +9,20 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Inventory {
+	
+	
+	public int stockSold = 5;
+
+	public int getStockSold() {
+		return stockSold++;
+	}
+
+	public void setStockSold(int stockSold) {
+		this.stockSold = stockSold;
+	}
+	
+	
+	
 
 //	public Map<String, List<Product>> vendingInventory = new TreeMap<>();
 //

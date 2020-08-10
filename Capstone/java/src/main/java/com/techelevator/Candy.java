@@ -38,7 +38,7 @@ public class Candy implements Items {
 		}
 		return this.stockRemaining;
 	}
-	
+
 	public void setStockRemaining() {
 		this.stockRemaining -= 1;
 	}
@@ -48,6 +48,5 @@ public class Candy implements Items {
 		// TODO Auto-generated method stub
 		return "Munch Munch, Yum";
 	}
-	
-	
+
 }

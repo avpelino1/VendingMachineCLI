@@ -13,18 +13,18 @@ public class Chip extends Connector implements Items {
 	public String code;
 	public String price;
 	public int stockRemaining = 5;
-	
-	
+	public int stockSold = 5;
+
 	public Chip() {
 	}
-		
+
 	public boolean importChipInfo(String itemCode) {
 		File inputFile = new File("vendingmachine.csv");
 		try (Scanner inputScanner = new Scanner(inputFile)) {
 			while (inputScanner.hasNextLine()) {
 				String food = inputScanner.nextLine();
 				if (food.contains(itemCode)) {
-					String[] info = food.split("\\|");
+					String[] info = food.split("\\|" + "");
 					this.code = info[0];
 					this.name = info[1];
 					this.price = info[2];
@@ -34,7 +34,7 @@ public class Chip extends Connector implements Items {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
 
@@ -71,6 +71,7 @@ public class Chip extends Connector implements Items {
 	public String yuum() {
 		// TODO Auto-generated method stub
 		return "Crunch Crunch, Yum";
+
 	}
 
 }

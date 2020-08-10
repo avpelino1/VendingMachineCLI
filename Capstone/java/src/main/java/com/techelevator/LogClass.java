@@ -15,6 +15,7 @@ public class LogClass {
 	inputLog.createNewFile();
 	String toBeInserted = "";
 	
+	
 	PrintWriter writer = new PrintWriter(new FileOutputStream(inputLog.getAbsoluteFile(), true));
 	writer.println(toBeInserted);
 	
