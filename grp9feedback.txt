@@ -1,0 +1,53 @@
+Group 9 Feedback
+
+1. There seems to be infinite inventory and items are not just
+limited to 5.
+
+Also, as I'm buying items the inventory number does not seem to
+change.
+
+2. This is not needed on your individual item classes:
+
+--------------------------------------------------
+public Candy() {
+}
+--------------------------------------------------
+
+Java will always put a default constructor behind the scenes.
+You can of course put code in there to specify things that 
+need to be done when the object is instantiated.
+
+3. Not sure what would happen to this, if we changed the layout 
+of the input file or if we decided to sell more than 4 types of 
+chips:
+
+--------------------------------------------------
+Chip chip = new Chip();
+Chip firstChip = new Chip();
+Chip secondChip = new Chip();
+Chip thirdChip = new Chip();
+Chip fourthChip = new Chip();
+--------------------------------------------------
+
+This is also causing a lot of repetition of code. 
+
+You did implement an interface (Items) and had all the food types
+inherit from it, so ideally we want to define some of these things
+polymorphically, maybe - 
+
+List<Items> listOfChips = new ArrayList<Chips>();
+listOfChips.add(....);
+
+4. On VendingMachineCLI.java, do not leave the scanner hanging like this:
+--------------------------------------------------
+Scanner codeOfItem = new Scanner(System.in);
+--------------------------------------------------
+
+Either close it, or use a try with resources
+
+5. Your MoneyHandler class has a lot of static methods, but on the 
+VendingMachineCLI you instantiated an instance of MoneyHandler and referred
+to them in a non-static manner.
+
+
+
